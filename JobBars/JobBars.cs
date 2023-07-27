@@ -42,7 +42,7 @@ namespace JobBars {
         public static CursorManager CursorManager { get; private set; }
         public static IconManager IconManager { get; private set; }
 
-        public string Name => "JobBars";
+        public string Name => "JobBarsCN";
         public string AssemblyLocation { get; private set; } = Assembly.GetExecutingAssembly().Location;
 
         public static JobIds CurrentJob { get; private set; } = JobIds.OTHER;

@@ -2,9 +2,9 @@
   <PropertyGroup>
     <TargetFramework>net7.0-windows</TargetFramework>
     <LangVersion>preview</LangVersion>
-    <AssemblyTitle>JobBars</AssemblyTitle>
+    <AssemblyTitle>JobBarsCN</AssemblyTitle>
     <Company></Company>
-    <Product>JobBars</Product>
+    <Product>JobBarsCN</Product>
     <Copyright>Copyright © 2020</Copyright>
     <AssemblyVersion>1.2.3.8</AssemblyVersion>
     <FileVersion>1.2.3.8</FileVersion>
@@ -72,7 +72,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <None Update="JobBars.json">
+    <None Update="JobBarsCN.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
