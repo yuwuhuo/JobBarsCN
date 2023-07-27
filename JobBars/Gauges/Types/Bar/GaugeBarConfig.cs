@@ -11,17 +11,17 @@
         }
 
         public override void Draw(string id, ref bool newVisual, ref bool reset) {
-            if (JobBars.Config.GaugeShowText.Draw($"Show text{id}", Name, ShowText, out var newShowText)) {
+            if (JobBars.Config.GaugeShowText.Draw($"显示文本{id}", Name, ShowText, out var newShowText)) {
                 ShowText = newShowText;
                 newVisual = true;
             }
 
-            if (JobBars.Config.GaugeSwapText.Draw($"Swap text position{id}", Name, SwapText, out var newSwapText)) {
+            if (JobBars.Config.GaugeSwapText.Draw($"调换文本位置{id}", Name, SwapText, out var newSwapText)) {
                 SwapText = newSwapText;
                 newVisual = true;
             }
 
-            if (JobBars.Config.GaugeVertical.Draw($"Vertical{id}", Name, Vertical, out var newVertical)) {
+            if (JobBars.Config.GaugeVertical.Draw($"竖置{id}", Name, Vertical, out var newVertical)) {
                 Vertical = newVertical;
                 newVisual = true;
             }

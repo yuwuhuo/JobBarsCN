@@ -21,13 +21,13 @@ namespace JobBars.Gauges.MP {
 
         protected override void DrawConfig(string id, ref bool newVisual, ref bool reset) {
             if (Segments != null) {
-                if (JobBars.Config.GaugeShowSegments.Draw($"Show segments{id}", Name, ShowSegments, out var newShowSegments)) {
+                if (JobBars.Config.GaugeShowSegments.Draw($"显示分段{id}", Name, ShowSegments, out var newShowSegments)) {
                     ShowSegments = newShowSegments;
                     reset = true;
                 }
             }
 
-            if (JobBars.Config.GaugeColor.Draw($"Color{id}", Name, Color, out var newColor)) {
+            if (JobBars.Config.GaugeColor.Draw($"颜色{id}", Name, Color, out var newColor)) {
                 Color = newColor;
                 newVisual = true;
             }

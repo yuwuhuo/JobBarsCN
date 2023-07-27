@@ -100,7 +100,7 @@ namespace JobBars.Helper {
         public static AtkUldPartsList* CreatePartsList(uint partCount) {
             var partsList = Alloc<AtkUldPartsList>();
             if (partsList == null) {
-                PluginLog.Debug("Failed to allocate memory for parts list");
+                PluginLog.Debug("无法为该部分分配内存");
             }
 
             partsList->Id = 1;
@@ -108,7 +108,7 @@ namespace JobBars.Helper {
 
             var part = (AtkUldPart*)Alloc((ulong)sizeof(AtkUldPart) * partCount);
             if (part == null) {
-                PluginLog.Debug("Failed to allocate memory for part");
+                PluginLog.Debug("无法为该部分分配内存");
                 IMemorySpace.Free(partsList, (ulong)sizeof(AtkUldPartsList));
                 return null;
             }

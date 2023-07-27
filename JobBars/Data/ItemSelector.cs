@@ -22,7 +22,7 @@ namespace JobBars.Data {
             Data = new Item((ActionIds)0)
         };
 
-        private string Text = "[NONE]";
+        private string Text = "无";
         private string SearchText = "";
 
         private List<ItemData> _Searched = null;
@@ -41,12 +41,12 @@ namespace JobBars.Data {
             var ret = false;
             if (ImGui.BeginCombo(Id, Text, ImGuiComboFlags.HeightLargest)) {
                 var resetScroll = false;
-                if (ImGui.InputText($"Search{Id}", ref SearchText, 100)) {
+                if (ImGui.InputText($"搜索{Id}", ref SearchText, 100)) {
                     _Searched = SearchText.Length == 0 ? null : Data.Where(x => x.Name.ToLower().Contains(SearchText.ToLower())).ToList();
                     resetScroll = true;
                 }
 
-                ImGui.BeginChild($"Select{Id}", new Vector2(ImGui.GetWindowContentRegionMax().X - ImGui.GetWindowContentRegionMin().X, 200), true);
+                ImGui.BeginChild($"选择{Id}", new Vector2(ImGui.GetWindowContentRegionMax().X - ImGui.GetWindowContentRegionMin().X, 200), true);
 
                 DisplayVisible(Searched.Count, out int preItems, out int showItems, out int postItems, out float itemHeight);
                 if (resetScroll) { ImGui.SetScrollHereY(); };
@@ -71,7 +71,7 @@ namespace JobBars.Data {
                         ImGui.SameLine();
                     }
 
-                    if (ImGui.Button("Select" + Id)) {
+                    if (ImGui.Button("选择" + Id)) {
                         Selected = SearchSelected;
                         Text = Selected.Name;
                         ret = true;

@@ -34,18 +34,18 @@ namespace JobBars.Cursors {
 
         public Cursor(JobIds job, CursorType inner, CursorType outer) {
             Name = $"{job}";
-            InnerName = Name + "_Inner";
-            OuterName = Name + "_Outer";
+            InnerName = Name + "_内圈";
+            OuterName = Name + "_外圈";
 
             InnerType = JobBars.Config.CursorType.Get(InnerName, inner);
             OuterType = JobBars.Config.CursorType.Get(OuterName, outer);
 
             InnerStatus = JobBars.Config.CursorStatus.Get(InnerName, new ItemData {
-                Name = "[NONE]",
+                Name = "无",
                 Data = new Item()
             });
             OuterStatus = JobBars.Config.CursorStatus.Get(OuterName, new ItemData {
-                Name = "[NONE]",
+                Name = "无",
                 Data = new Item()
             });
             InnerStatusDuration = JobBars.Config.CursorStatusDuration.Get(InnerName, 5f);
@@ -87,28 +87,28 @@ namespace JobBars.Cursors {
         }
 
         public void Draw(string _ID) {
-            if (JobBars.Config.CursorType.Draw($"Inner type{_ID}", InnerName, ValidCursorType, InnerType, out var newInnerValue)) {
+            if (JobBars.Config.CursorType.Draw($"内环类型{_ID}", InnerName, ValidCursorType, InnerType, out var newInnerValue)) {
                 InnerType = newInnerValue;
             }
 
             if (InnerType == CursorType.StatusTime) {
-                if (JobBars.Config.CursorStatus.Draw($"Inner status{_ID}", InnerName, UIHelper.StatusList, InnerStatus, out var newInnerStatus)) {
+                if (JobBars.Config.CursorStatus.Draw($"内环状态{_ID}", InnerName, UIHelper.StatusList, InnerStatus, out var newInnerStatus)) {
                     InnerStatus = newInnerStatus;
                 }
-                if (JobBars.Config.CursorStatusDuration.Draw($"Inner status duration{_ID}", InnerName, InnerStatusDuration, out var newInnerStatusDuration)) {
+                if (JobBars.Config.CursorStatusDuration.Draw($"内环状态持续时间{_ID}", InnerName, InnerStatusDuration, out var newInnerStatusDuration)) {
                     InnerStatusDuration = newInnerStatusDuration;
                 }
             }
 
-            if (JobBars.Config.CursorType.Draw($"Outer type{_ID}", OuterName, ValidCursorType, OuterType, out var newOuterValue)) {
+            if (JobBars.Config.CursorType.Draw($"外环类型{_ID}", OuterName, ValidCursorType, OuterType, out var newOuterValue)) {
                 OuterType = newOuterValue;
             }
 
             if (OuterType == CursorType.StatusTime) {
-                if (JobBars.Config.CursorStatus.Draw($"Outer status{_ID}", OuterName, UIHelper.StatusList, OuterStatus, out var newOuterStatus)) {
+                if (JobBars.Config.CursorStatus.Draw($"外环状态{_ID}", OuterName, UIHelper.StatusList, OuterStatus, out var newOuterStatus)) {
                     OuterStatus = newOuterStatus;
                 }
-                if (JobBars.Config.CursorStatusDuration.Draw($"Outer status duration{_ID}", OuterName, OuterStatusDuration, out var newOuterStautsDuration)) {
+                if (JobBars.Config.CursorStatusDuration.Draw($"外环状态持续时间{_ID}", OuterName, OuterStatusDuration, out var newOuterStautsDuration)) {
                     OuterStatusDuration = newOuterStautsDuration;
                 }
             }

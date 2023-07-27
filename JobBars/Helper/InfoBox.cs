@@ -15,7 +15,7 @@ namespace JobBars {
         public float BorderThickness { get; set; } = 1.0f;
         public int SegmentResolution { get; set; } = 10;
         public Vector2 Offset { get; set; } = new Vector2(0, 10);
-        public string Label { get; set; } = "Label Not Set";
+        public string Label { get; set; } = "标签未设置";
 
         public bool AutoResizeX { get; set; } = true;
         public bool AutoResizeY { get; set; } = true;

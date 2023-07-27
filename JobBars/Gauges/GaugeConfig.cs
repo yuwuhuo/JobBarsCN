@@ -54,28 +54,28 @@ namespace JobBars.Gauges {
         public void Draw(string id, out bool newVisual, out bool reset) {
             newVisual = reset = false;
 
-            if (JobBars.Config.GaugeEnabled.Draw($"Enabled{id}", Name, Enabled, out var newEnabled)) {
+            if (JobBars.Config.GaugeEnabled.Draw($"启用{id}", Name, Enabled, out var newEnabled)) {
                 Enabled = newEnabled;
                 newVisual = true;
             }
 
-            if (JobBars.Config.GaugeHideInactive.Draw($"Hide when inactive{id}", Name, HideWhenInactive, out var newHideWhenInactive)) {
+            if (JobBars.Config.GaugeHideInactive.Draw($"非战斗状态隐藏{id}", Name, HideWhenInactive, out var newHideWhenInactive)) {
                 HideWhenInactive = newHideWhenInactive;
             }
 
-            if (JobBars.Config.GaugeIndividualScale.Draw($"Scale{id}", Name, out var newScale)) {
+            if (JobBars.Config.GaugeIndividualScale.Draw($"尺寸{id}", Name, out var newScale)) {
                 Scale = Math.Max(0.1f, newScale);
                 newVisual = true;
             }
 
             if (JobBars.Config.GaugePositionType == GaugePositionType.Split) {
-                if (JobBars.Config.GaugeSplitPosition.Draw($"Split position{id}", Name, out var newPosition)) {
+                if (JobBars.Config.GaugeSplitPosition.Draw($"分体位置{id}", Name, out var newPosition)) {
                     SetSplitPosition(newPosition);
                     newVisual = true;
                 }
             }
 
-            if (JobBars.Config.GaugeOrder.Draw($"Order{id}", Name, Order, out var newOrder)) {
+            if (JobBars.Config.GaugeOrder.Draw($"顺序{id}", Name, Order, out var newOrder)) {
                 Order = newOrder;
                 newVisual = true;
             }
@@ -93,8 +93,8 @@ namespace JobBars.Gauges {
             DrawConfig(id, ref newVisual, ref reset);
         }
 
-        protected void DrawSoundEffect(string label = "Progress sound effect") {
-            if (ImGui.Button("Test##SoundEffect")) Helper.UIHelper.PlaySoundEffect(SoundEffect);
+        protected void DrawSoundEffect(string label = "进度音效") {
+            if (ImGui.Button("测试##音效")) Helper.UIHelper.PlaySoundEffect(SoundEffect);
             ImGui.SameLine();
 
             ImGui.SetNextItemWidth(200f);
@@ -102,21 +102,21 @@ namespace JobBars.Gauges {
                 SoundEffect = newSoundEffect;
             }
             ImGui.SameLine();
-            HelpMarker("For macro sound effects, add 36. For example, <se.6> would be 6+36=42");
+            HelpMarker("对于宏音效，请添加 36。例如，<se.6> 将是 6+36=42");
         }
 
         public void PlaySoundEffect() => Helper.UIHelper.PlaySoundEffect(SoundEffect);
 
         protected void DrawCompletionSoundEffect() {
-            if (ImGui.Button("Test##CompletionSoundEffect")) Helper.UIHelper.PlaySoundEffect(CompletionSoundEffect);
+            if (ImGui.Button("测试##完成音效")) Helper.UIHelper.PlaySoundEffect(CompletionSoundEffect);
             ImGui.SameLine();
 
             ImGui.SetNextItemWidth(200f);
-            if (JobBars.Config.GaugeCompletionSoundEffect_2.Draw($"Completion sound effect (0 = off)", Name, CompletionSoundEffect, out var newSoundEffect)) {
+            if (JobBars.Config.GaugeCompletionSoundEffect_2.Draw($"完成音效 (0 = off)", Name, CompletionSoundEffect, out var newSoundEffect)) {
                 CompletionSoundEffect = newSoundEffect;
             }
             ImGui.SameLine();
-            HelpMarker("For macro sound effects, add 36. For example, <se.6> would be 6+36=42");
+            HelpMarker("对于宏音效，请添加 36。例如，<se.6> 将是 6+36=42");
         }
 
         public void PlayCompletionSoundEffect() => Helper.UIHelper.PlaySoundEffect(CompletionSoundEffect);
@@ -134,7 +134,7 @@ namespace JobBars.Gauges {
         }
 
         public void DrawPositionBox() {
-            if (JobBars.DrawPositionView(Name + "##GaugePosition", Position, out var pos)) {
+            if (JobBars.DrawPositionView(Name + "##量谱位置", Position, out var pos)) {
                 JobBars.Config.GaugeSplitPosition.Set(Name, pos);
                 SetSplitPosition(pos);
                 JobBars.GaugeManager.UpdatePositionScale();
@@ -146,7 +146,7 @@ namespace JobBars.Gauges {
         protected abstract void DrawConfig(string id, ref bool newVisual, ref bool reset);
 
         private void SetSplitPosition(Vector2 pos) {
-            JobBars.SetWindowPosition(Name + "##GaugePosition", pos);
+            JobBars.SetWindowPosition(Name + "##量谱位置", pos);
         }
     }
 }

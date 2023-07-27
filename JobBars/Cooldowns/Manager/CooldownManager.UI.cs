@@ -6,7 +6,7 @@ using System.Numerics;
 namespace JobBars.Cooldowns.Manager {
     public unsafe partial class CooldownManager {
         private readonly InfoBox<CooldownManager> PositionInfoBox = new() {
-            Label = "Position",
+            Label = "坐标",
             ContentsAction = (CooldownManager manager) => {
                 if (ImGui.Checkbox("Left-aligned" + manager.Id, ref JobBars.Config.CooldownsLeftAligned)) {
                     JobBars.Config.Save();
@@ -18,7 +18,7 @@ namespace JobBars.Cooldowns.Manager {
                     JobBars.Config.Save();
                 }
 
-                if (ImGui.InputFloat2("Position" + manager.Id, ref JobBars.Config.CooldownPosition)) {
+                if (ImGui.InputFloat2("坐标" + manager.Id, ref JobBars.Config.CooldownPosition)) {
                     manager.UpdatePositionScale();
                     JobBars.Config.Save();
                 }

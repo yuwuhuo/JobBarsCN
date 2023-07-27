@@ -76,27 +76,27 @@ namespace JobBars.Gauges.GCD {
 
                 var suffix = string.IsNullOrEmpty(subGCD.SubName) ? "" : $" ({subGCD.SubName})";
 
-                if (JobBars.Config.GaugeColor.Draw($"Color{suffix}{id}", subGCD.Name, subGCD.Color, out var newColor)) {
+                if (JobBars.Config.GaugeColor.Draw($"颜色{suffix}{id}", subGCD.Name, subGCD.Color, out var newColor)) {
                     subGCD.Color = newColor;
                     newVisual = true;
                 }
 
-                if (JobBars.Config.GaugeMaxGcds.Draw($"Maximum GCDs{suffix}{id}", subGCD.Name, subGCD.MaxCounter, out var newMax)) {
+                if (JobBars.Config.GaugeMaxGcds.Draw($"GCD最大值{suffix}{id}", subGCD.Name, subGCD.MaxCounter, out var newMax)) {
                     if (newMax <= 0) newMax = 1;
                     if (newMax > UIArrow.MAX ) newMax = UIArrow.MAX;
                     subGCD.MaxCounter = newMax;
                     newVisual = true;
                 }
 
-                if (JobBars.Config.GaugeInvert.Draw($"Invert{suffix}{id}", subGCD.Name, subGCD.Invert, out var newInvert)) {
+                if (JobBars.Config.GaugeInvert.Draw($"相反走向{suffix}{id}", subGCD.Name, subGCD.Invert, out var newInvert)) {
                     subGCD.Invert = newInvert;
                 }
 
-                if (JobBars.Config.GaugeCompletionSound.Draw($"Completion sound{suffix}{id}", subGCD.Name, ValidSoundType, subGCD.CompletionSound, out var newCompletionSound)) {
+                if (JobBars.Config.GaugeCompletionSound.Draw($"完成音效{suffix}{id}", subGCD.Name, ValidSoundType, subGCD.CompletionSound, out var newCompletionSound)) {
                     subGCD.CompletionSound = newCompletionSound;
                 }
 
-                if (JobBars.Config.GaugeReverseFill.Draw($"Reverse tick fill order{suffix}{id}", subGCD.Name, subGCD.ReverseFill, out var newReverseFill)) {
+                if (JobBars.Config.GaugeReverseFill.Draw($"相反填充{suffix}{id}", subGCD.Name, subGCD.ReverseFill, out var newReverseFill)) {
                     subGCD.ReverseFill = newReverseFill;
                     newVisual = true;
                 }

@@ -15,27 +15,27 @@ namespace JobBars {
         public static readonly Vector4 GREEN_COLOR = new(0.36078431373f, 0.72156862745f, 0.36078431373f, 1.0f);
 
         private readonly InfoBox<JobBars> RequiresRestartInfoBox = new() {
-            Label = "Requires Restart",
+            Label = "重启游戏起效",
             ContentsAction = (JobBars item) => {
-                if (ImGui.Checkbox("Use 4K textures##JobBars_Settings", ref Config.Use4K)) {
+                if (ImGui.Checkbox("使用 4K 纹理##职业_Settings", ref Config.Use4K)) {
                     Config.Save();
                 }
 
                 ImGui.SetNextItemWidth(200f);
-                if (DrawCombo(ValidAttachTypes, Config.AttachAddon, "Gauge/Buff/Cursor UI element", "##JobBars_Settings", out var newAttach)) {
+                if (DrawCombo(ValidAttachTypes, Config.AttachAddon, "量谱/Buff计时/光标 UI 元素", "##职业_设置", out var newAttach)) {
                     Config.AttachAddon = newAttach;
                     Config.Save();
                 }
 
                 ImGui.SetNextItemWidth(200f);
-                if (DrawCombo(ValidAttachTypes, Config.CooldownAttachAddon, "Cooldown UI element", "##JobBars_Settings", out var newCDAttach)) {
+                if (DrawCombo(ValidAttachTypes, Config.CooldownAttachAddon, "冷却 UI 元素", "##职业_设置", out var newCDAttach)) {
                     Config.CooldownAttachAddon = newCDAttach;
                     Config.Save();
                 }
             }
         };
 
-        private static readonly string Text = "Choosing UI elements will not work with plugins which hide them (such as Chat2 for Chatbox, DelvUI for PartyList). Also, when selecting PartyList for gauges, make sure to have \"Hide party list when solo\" turned off in Character Configuation > UI Settings > Party List.";
+        private static readonly string Text = "选择 UI 元素不洽合于隐藏它们的插件（例如 Chatbox 的 Chat2、PartyList的 Delv UI）。另外，在选择量谱作为小队列表元素时，请确保在“角色设置（K）”>“界面设置”>“小队列表”中关闭“单人时隐藏队伍列表”。";
 
         protected static void DisplayWarning() {
             ImGui.PushStyleColor(ImGuiCol.Border, new Vector4(1, 0, 0, 0.3f));
@@ -43,7 +43,7 @@ namespace JobBars {
 
             var textSize = ImGui.CalcTextSize(Text, ImGui.GetContentRegionMax().X - 40);
 
-            ImGui.BeginChild("##AnimationWarning", new Vector2(-1,
+            ImGui.BeginChild("##动画警告", new Vector2(-1,
                 textSize.Y +
                 ImGui.GetStyle().ItemSpacing.Y * 2 +
                 ImGui.GetStyle().FramePadding.Y * 2 + 5
@@ -60,9 +60,9 @@ namespace JobBars {
             if (!PlayerExists) return;
             if (!Visible) return;
 
-            string _ID = "##JobBars_Settings";
+            string _ID = "##职业_设置";
             ImGui.SetNextWindowSize(new Vector2(600, 1000), ImGuiCond.FirstUseEver);
-            if (ImGui.Begin("JobBars Settings", ref Visible)) {
+            if (ImGui.Begin("技能栏设置", ref Visible)) {
                 RequiresRestartInfoBox.Draw(this);
 
                 DisplayWarning();
@@ -71,13 +71,13 @@ namespace JobBars {
 
                 // ==========================
 
-                ImGui.BeginTabBar("Tabs" + _ID);
-                if (ImGui.BeginTabItem("Gauges" + _ID)) {
+                ImGui.BeginTabBar("选项卡" + _ID);
+                if (ImGui.BeginTabItem("量谱" + _ID)) {
                     GaugeManager?.Draw();
                     ImGui.EndTabItem();
                 }
 
-                if (ImGui.BeginTabItem("Icons" + _ID)) {
+                if (ImGui.BeginTabItem("图标" + _ID)) {
                     IconManager?.Draw();
                     ImGui.EndTabItem();
                 }
@@ -87,12 +87,12 @@ namespace JobBars {
                     ImGui.EndTabItem();
                 }
 
-                if (ImGui.BeginTabItem("Cooldowns" + _ID)) {
+                if (ImGui.BeginTabItem("冷却时间" + _ID)) {
                     CooldownManager?.Draw();
                     ImGui.EndTabItem();
                 }
 
-                if (ImGui.BeginTabItem("Cursor" + _ID)) {
+                if (ImGui.BeginTabItem("光标" + _ID)) {
                     CursorManager?.Draw();
                     ImGui.EndTabItem();
                 }

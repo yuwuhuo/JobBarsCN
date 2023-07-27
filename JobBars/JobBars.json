@@ -1,8 +1,8 @@
 {
-  "Author": "ocealot",
+  "Author": "ocealot，yuwuhuo（本地化）",
   "Name": "JobBars",
   "Punchline": "Extra job gauges",
-  "Description": "Additional job gauges, party buff timers, mitigation trackers, and more. Icon by PAPACHIN",
+  "Description": "添加更多的职业量谱，团副冷却，减伤监控等",
   "InternalName": "JobBars",
   "AssemblyVersion": "1.2.3.8",
   "Tags": [ "UI", "Bars" ],

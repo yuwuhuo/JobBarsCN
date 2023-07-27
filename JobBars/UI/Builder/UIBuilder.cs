@@ -42,7 +42,7 @@ namespace JobBars.UI {
             var cooldownAddon = UIHelper.CooldownAttachAddon;
             var partyListAddon = UIHelper.PartyListAddon;
 
-            PluginLog.Log($"Gauges={buffGaugeAddon != null} PartyList={partyListAddon != null} Cooldowns={cooldownAddon != null}");
+            PluginLog.Log($"量谱={buffGaugeAddon != null} 小队列表={partyListAddon != null} 技能冷却={cooldownAddon != null}");
 
             // ===== CONTAINERS =========
 
@@ -52,7 +52,7 @@ namespace JobBars.UI {
 
             UIHelper.Attach(buffGaugeAddon, GaugeRoot);
 
-            PluginLog.Log("Attached Gauges");
+            PluginLog.Log("附加量谱");
 
             // ===== BUFF PARTYLIST ======
 
@@ -62,7 +62,7 @@ namespace JobBars.UI {
                 partyMember.PartyMemberComponent->UldManager.UpdateDrawNodeList();
             }
 
-            PluginLog.Log("Attached PartyList");
+            PluginLog.Log("附加小队列表");
 
             // ===== COOLDOWNS =========
 
@@ -70,21 +70,21 @@ namespace JobBars.UI {
 
             UIHelper.Attach(cooldownAddon, CooldownRoot);
 
-            PluginLog.Log("Attached Cooldowns");
+            PluginLog.Log("附加技能冷却");
 
             // ======================
 
             buffGaugeAddon->UldManager.UpdateDrawNodeList();
 
-            PluginLog.Log("Updated Gauges");
+            PluginLog.Log("更新量谱");
 
             cooldownAddon->UldManager.UpdateDrawNodeList();
 
-            PluginLog.Log("Updated PartyList");
+            PluginLog.Log("更新小队列表");
 
             partyListAddon->AtkUnitBase.UldManager.UpdateDrawNodeList();
 
-            PluginLog.Log("Updated Cooldowns");
+            PluginLog.Log("更新技能冷却");
         }
 
         public void Tick(float percent) {

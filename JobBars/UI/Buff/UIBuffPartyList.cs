@@ -23,7 +23,6 @@ namespace JobBars.UI {
             Highlight->AtkResNode.NodeID = 23;
             Highlight->AtkResNode.Flags_2 = 0;
             Highlight->AtkResNode.DrawFlags = 0;
-            Highlight->AtkResNode.NodeFlags = (NodeFlags)19;
             Highlight->AtkResNode.MultiplyBlue = 50;
             Highlight->AtkResNode.MultiplyRed = 150;
             UIHelper.SetPosition(Highlight, 47, 21);
@@ -38,7 +37,6 @@ namespace JobBars.UI {
             TextNode->EdgeColor = new ByteColor { R = 8, G = 80, B = 152, A = 255 };
             TextNode->AtkResNode.X = 30;
             TextNode->AtkResNode.Y = 20;
-            TextNode->AtkResNode.NodeFlags = (NodeFlags)19;
             TextNode->AtkResNode.Flags_2 = 1;
             TextNode->AtkResNode.Priority = 0;
             TextNode->AtkResNode.NodeID = 24;
@@ -61,7 +59,7 @@ namespace JobBars.UI {
 
         public void AttachTo(AtkResNode* targetGlowContainer, AtkTextNode* iconBottomLeftText) {
             if (Attached) {
-                PluginLog.Error("Already attached");
+                PluginLog.Error("附加完成");
                 return;
             }
             if (targetGlowContainer == null || iconBottomLeftText == null) return;
@@ -79,7 +77,7 @@ namespace JobBars.UI {
 
         public void DetachFrom(AtkResNode* targetGlowContainer, AtkTextNode* iconBottomLeftText) {
             if (!Attached) {
-                PluginLog.Error("Not attached yet");
+                PluginLog.Error("未附加");
                 return;
             }
             if (targetGlowContainer == null || iconBottomLeftText == null) return;

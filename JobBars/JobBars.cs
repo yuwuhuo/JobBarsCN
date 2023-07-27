@@ -94,12 +94,12 @@ namespace JobBars {
                 Config = PluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
             }
             catch (Exception e) {
-                PluginLog.LogError("Error loading config", e);
+                PluginLog.LogError("加载失败", e);
                 Config = new Configuration();
                 Config.Save();
             }
             if (Config.Version < 1) {
-                PluginLog.Log("Old config version found");
+                PluginLog.Log("设置版本过旧");
                 Config = new Configuration();
                 Config.Save();
             }
@@ -239,7 +239,7 @@ namespace JobBars {
 
             if (job != CurrentJob) {
                 CurrentJob = job;
-                PluginLog.Log($"SWITCHED JOB TO {CurrentJob}");
+                PluginLog.Log($"职业切换为 {CurrentJob}");
                 GaugeManager.SetJob(CurrentJob);
                 CursorManager.SetJob(CurrentJob);
                 IconManager.SetJob(CurrentJob);
@@ -270,7 +270,7 @@ namespace JobBars {
 
         private void SetupCommands() {
             CommandManager.AddHandler("/jobbars", new CommandInfo(OnCommand) {
-                HelpMessage = $"Open config window for {Name}",
+                HelpMessage = $"打开设置窗口 {Name}",
                 ShowInHelp = true
             });
         }

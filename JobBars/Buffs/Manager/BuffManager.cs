@@ -13,7 +13,7 @@ namespace JobBars.Buffs.Manager {
         private readonly Dictionary<JobIds, List<BuffConfig>> CustomBuffs = new();
         private List<BuffConfig> ApplyToTargetCustomBuffs => CustomBuffs.Values.SelectMany(x => x.Where(y => y.ApplyToTarget)).ToList();
 
-        public BuffManager() : base("##JobBars_Buffs") {
+        public BuffManager() : base("##职业_Buffs") {
             ApplyToTargetBuffs.AddRange(JobToValue.Values.SelectMany(x => x.Where(y => y.ApplyToTarget)).ToList());
             JobBars.Builder.HideAllBuffPartyList();
             JobBars.Builder.HideAllBuffs();
@@ -53,7 +53,7 @@ namespace JobBars.Buffs.Manager {
             Dictionary<uint, BuffPartyMember> newObjectIdToMember = new();
             HashSet<BuffTracker> activeBuffs = new();
 
-            if (JobBars.PartyMembers == null) PluginLog.LogError("PartyMembers is NULL");
+            if (JobBars.PartyMembers == null) PluginLog.LogError("无小队列表");
 
             for (int idx = 0; idx < JobBars.PartyMembers.Count; idx++) {
                 var partyMember = JobBars.PartyMembers[idx];

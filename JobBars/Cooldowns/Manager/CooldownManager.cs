@@ -16,7 +16,7 @@ namespace JobBars.Cooldowns.Manager {
         private Dictionary<uint, CooldownPartyMember> ObjectIdToMember = new();
         private readonly Dictionary<JobIds, List<CooldownConfig>> CustomCooldowns = new();
 
-        public CooldownManager() : base("##JobBars_Cooldowns") {
+        public CooldownManager() : base("##职业_冷却时间") {
             JobBars.Builder.SetCooldownPosition(JobBars.Config.CooldownPosition);
 
             // initialize custom cooldowns
@@ -58,7 +58,7 @@ namespace JobBars.Cooldowns.Manager {
 
             Dictionary<uint, CooldownPartyMember> newObjectIdToMember = new();
 
-            if (JobBars.PartyMembers == null) PluginLog.LogError("PartyMembers is NULL");
+            if (JobBars.PartyMembers == null) PluginLog.LogError("无小队队员");
 
             for (int idx = 0; idx < JobBars.PartyMembers.Count; idx++) {
                 var partyMember = JobBars.PartyMembers[idx];

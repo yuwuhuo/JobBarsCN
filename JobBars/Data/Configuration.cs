@@ -190,7 +190,7 @@ namespace JobBars.Data {
             value = currentValue;
             if (ImGui.BeginCombo(id, value.Name)) {
                 foreach (var entry in UIColor.AllColors) {
-                    if (ImGui.Selectable($"{entry.Key}##Combo", value.Name == entry.Key)) {
+                    if (ImGui.Selectable($"{entry.Key}##连击", value.Name == entry.Key)) {
                         value = entry.Value;
                         ImGui.EndCombo();
                         return true;

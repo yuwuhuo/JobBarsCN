@@ -44,26 +44,26 @@ namespace JobBars.Gauges.Procs {
         public override GaugeTracker GetTracker(int idx) => new GaugeProcsTracker(this, idx);
 
         protected override void DrawConfig(string id, ref bool newVisual, ref bool reset) {
-            if (JobBars.Config.GaugeShowText.Draw($"Show text{id}", Name, ProcsShowText, out var newProcsShowText)) {
+            if (JobBars.Config.GaugeShowText.Draw($"显示倒计时{id}", Name, ProcsShowText, out var newProcsShowText)) {
                 ProcsShowText = newProcsShowText;
                 newVisual = true;
             }
 
-            if (JobBars.Config.GaugeCompletionSound.Draw($"Proc sound{id}", Name, ValidSoundType, ProcSound, out var newProcSound)) {
+            if (JobBars.Config.GaugeCompletionSound.Draw($"进程音效{id}", Name, ValidSoundType, ProcSound, out var newProcSound)) {
                 ProcSound = newProcSound;
             }
 
-            DrawSoundEffect("Proc sound effect");
+            DrawSoundEffect("进程音效");
 
             foreach (var proc in Procs) {
                 ImGui.SetCursorPosY(ImGui.GetCursorPosY() + 10);
 
-                if (JobBars.Config.GaugeProcOrder.Draw($"Order ({proc.Name})", proc.Name, proc.Order, out var newOrder)) {
+                if (JobBars.Config.GaugeProcOrder.Draw($"顺序 ({proc.Name})", proc.Name, proc.Order, out var newOrder)) {
                     proc.Order = newOrder;
                     reset = true;
                 }
 
-                if (JobBars.Config.GaugeProcColor.Draw($"Color ({proc.Name})", proc.Name, proc.Color, out var newColor)) {
+                if (JobBars.Config.GaugeProcColor.Draw($"颜色 ({proc.Name})", proc.Name, proc.Color, out var newColor)) {
                     proc.Color = newColor;
                     reset = true;
                 }

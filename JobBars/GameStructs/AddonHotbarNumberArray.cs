@@ -54,7 +54,7 @@ namespace JobBars.GameStructs {
             15 => CrossHotBar_6,
             16 => CrossHotBar_7,
             17 => CrossHotBar_8,
-            _ => throw new IndexOutOfRangeException("Index should be between 0 and 17")
+            _ => throw new IndexOutOfRangeException("索引应介于 0 到 17 之间")
         };
     }
 
@@ -94,7 +94,7 @@ namespace JobBars.GameStructs {
             13 => Slot_14,
             14 => Slot_15,
             15 => Slot_16,
-            _ => throw new IndexOutOfRangeException("Index should be between 0 and 15")
+            _ => throw new IndexOutOfRangeException("索引应介于 0 到 15 之间")
         };
     }
 

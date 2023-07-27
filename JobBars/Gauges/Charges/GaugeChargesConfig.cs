@@ -40,19 +40,19 @@ namespace JobBars.Gauges.Charges {
         public override GaugeTracker GetTracker(int idx) => new GaugeChargesTracker(this, idx);
 
         protected override void DrawConfig(string id, ref bool newVisual, ref bool reset) {
-            if (JobBars.Config.GaugeColor.Draw($"Color{id}", Name, BarColor, out var newColor)) {
+            if (JobBars.Config.GaugeColor.Draw($"颜色{id}", Name, BarColor, out var newColor)) {
                 BarColor = newColor;
                 newVisual = true;
             }
 
-            if (JobBars.Config.GaugeCompletionSound.Draw($"Completion sound{id}", Name, ValidSoundType, CompletionSound, out var newCompletionSound)) {
+            if (JobBars.Config.GaugeCompletionSound.Draw($"完成音效{id}", Name, ValidSoundType, CompletionSound, out var newCompletionSound)) {
                 CompletionSound = newCompletionSound;
             }
 
             DrawCompletionSoundEffect();
             DrawSoundEffect();
 
-            if (JobBars.Config.GaugeReverseFill.Draw($"Reverse tick fill order{id}", Name, ReverseFill, out var newReverseFill)) {
+            if (JobBars.Config.GaugeReverseFill.Draw($"相反填充{id}", Name, ReverseFill, out var newReverseFill)) {
                 ReverseFill = newReverseFill;
                 newVisual = true;
             }

@@ -39,7 +39,7 @@ namespace JobBars.GameStructs {
             5 => Member5,
             6 => Member6,
             7 => Member7,
-            _ => throw new IndexOutOfRangeException("Index should be between 0 and 7")
+            _ => throw new IndexOutOfRangeException("索引应介于 0 和 7 之间")
         };
     }
 

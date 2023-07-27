@@ -44,24 +44,24 @@ namespace JobBars.Cooldowns {
                 ImGui.Indent();
 
                 if (isCustom) {
-                    if (JobBars.RemoveButton($"Delete{_id}", true)) deleteCustom = true;
+                    if (JobBars.RemoveButton($"删除{_id}", true)) deleteCustom = true;
                 }
 
-                if (JobBars.Config.CooldownEnabled.Draw($"Enabled{_id}{Name}", Name, Enabled, out var newEnabled)) {
+                if (JobBars.Config.CooldownEnabled.Draw($"启用{_id}{Name}", Name, Enabled, out var newEnabled)) {
                     Enabled = newEnabled;
                     reset = true;
                 }
 
-                if (JobBars.Config.CooldownOrder.Draw($"Order{_id}{Name}", Name, Order, out var newOrder)) {
+                if (JobBars.Config.CooldownOrder.Draw($"顺序{_id}{Name}", Name, Order, out var newOrder)) {
                     Order = newOrder;
                     reset = true;
                 }
 
-                if (JobBars.Config.CooldownShowBorderWhenActive.Draw($"Show border when active{_id}{Name}", Name, ShowBorderWhenActive, out var newShowBorderWhenActive)) {
+                if (JobBars.Config.CooldownShowBorderWhenActive.Draw($"可用时显示边框{_id}{Name}", Name, ShowBorderWhenActive, out var newShowBorderWhenActive)) {
                     ShowBorderWhenActive = newShowBorderWhenActive;
                 }
 
-                if (JobBars.Config.CooldownShowBorderWhenOffCD.Draw($"Show border when off CD{_id}{Name}", Name, ShowBorderWhenOffCD, out var newShowBorderWhenOffCD)) {
+                if (JobBars.Config.CooldownShowBorderWhenOffCD.Draw($"冷却完毕时显示边框{_id}{Name}", Name, ShowBorderWhenOffCD, out var newShowBorderWhenOffCD)) {
                     ShowBorderWhenOffCD = newShowBorderWhenOffCD;
                 }
 
