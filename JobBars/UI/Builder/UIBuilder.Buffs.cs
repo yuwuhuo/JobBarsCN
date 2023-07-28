@@ -68,13 +68,13 @@ namespace JobBars.UI {
 
         public void UpdateBuffsTextSize() {
             foreach (var buff in Buffs) {
-                buff.SetTextSize(JobBarsCN.Config.BuffTextSize_v2);
+                buff.SetTextSize(JobBarsCN.设置.BuffTextSize_v2);
             }
         }
 
         public void UpdateBorderThin() {
             foreach (var buff in Buffs) {
-                buff.SetBorderThin(JobBarsCN.Config.BuffThinBorder);
+                buff.SetBorderThin(JobBarsCN.设置.BuffThinBorder);
             }
         }
 

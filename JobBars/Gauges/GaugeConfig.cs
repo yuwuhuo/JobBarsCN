@@ -12,7 +12,7 @@ using ImGuiNET;
 
 namespace JobBars.Gauges {
     public abstract class GaugeConfig {
-        public readonly string Name;
+        public readonly string 名称;
         public GaugeVisualType Type { get; private set; }
         public GaugeTypeConfig TypeConfig { get; private set; }
 
@@ -22,19 +22,19 @@ namespace JobBars.Gauges {
         public bool HideWhenInactive { get; private set; }
         public int SoundEffect { get; private set; }
         public int CompletionSoundEffect { get; private set; }
-        public Vector2 Position => JobBarsCN.Config.GaugeSplitPosition.Get(Name);
+        public Vector2 Position => JobBarsCN.设置.GaugeSplitPosition.Get(名称);
 
-        public static readonly GaugeCompleteSoundType[] ValidSoundType = (GaugeCompleteSoundType[])Enum.GetValues(typeof(GaugeCompleteSoundType));
+        public static readonly GaugeCompleteSoundType[] 生效音效类型 = (GaugeCompleteSoundType[])Enum.GetValues(typeof(GaugeCompleteSoundType));
 
         public GaugeConfig(string name, GaugeVisualType type) {
-            Name = name;
-            Enabled = JobBarsCN.Config.GaugeEnabled.Get(Name);
-            Order = JobBarsCN.Config.GaugeOrder.Get(Name);
-            Scale = JobBarsCN.Config.GaugeIndividualScale.Get(Name);
-            HideWhenInactive = JobBarsCN.Config.GaugeHideInactive.Get(Name);
-            SoundEffect = JobBarsCN.Config.GaugeSoundEffect_2.Get(Name);
-            CompletionSoundEffect = JobBarsCN.Config.GaugeCompletionSoundEffect_2.Get(Name);
-            SetType(JobBarsCN.Config.GaugeType.Get(Name, type));
+            名称 = name;
+            Enabled = JobBarsCN.设置.GaugeEnabled.Get(名称);
+            Order = JobBarsCN.设置.GaugeOrder.Get(名称);
+            Scale = JobBarsCN.设置.GaugeIndividualScale.Get(名称);
+            HideWhenInactive = JobBarsCN.设置.GaugeHideInactive.Get(名称);
+            SoundEffect = JobBarsCN.设置.GaugeSoundEffect_2.Get(名称);
+            CompletionSoundEffect = JobBarsCN.设置.GaugeCompletionSoundEffect_2.Get(名称);
+            SetType(JobBarsCN.设置.GaugeType.Get(名称, type));
         }
 
         public abstract GaugeTracker GetTracker(int idx);
@@ -43,10 +43,10 @@ namespace JobBars.Gauges {
             var validTypes = GetValidGaugeTypes();
             Type = validTypes.Contains(type) ? type : validTypes[0];
             TypeConfig = Type switch {
-                GaugeVisualType.Bar => new GaugeBarConfig(Name),
-                GaugeVisualType.Diamond => new GaugeDiamondConfig(Name),
-                GaugeVisualType.Arrow => new GaugeArrowConfig(Name),
-                GaugeVisualType.BarDiamondCombo => new GaugeBarDiamondComboConfig(Name),
+                GaugeVisualType.条状 => new GaugeBarConfig(名称),
+                GaugeVisualType.Diamond => new GaugeDiamondConfig(名称),
+                GaugeVisualType.Arrow => new GaugeArrowConfig(名称),
+                GaugeVisualType.BarDiamondCombo => new GaugeBarDiamondComboConfig(名称),
                 _ => null
             };
         }
@@ -54,35 +54,35 @@ namespace JobBars.Gauges {
         public void Draw(string id, out bool newVisual, out bool reset) {
             newVisual = reset = false;
 
-            if (JobBarsCN.Config.GaugeEnabled.Draw($"启用{id}", Name, Enabled, out var newEnabled)) {
+            if (JobBarsCN.设置.GaugeEnabled.Draw($"启用{id}", 名称, Enabled, out var newEnabled)) {
                 Enabled = newEnabled;
                 newVisual = true;
             }
 
-            if (JobBarsCN.Config.GaugeHideInactive.Draw($"非战斗状态隐藏{id}", Name, HideWhenInactive, out var newHideWhenInactive)) {
+            if (JobBarsCN.设置.GaugeHideInactive.Draw($"非战斗状态隐藏{id}", 名称, HideWhenInactive, out var newHideWhenInactive)) {
                 HideWhenInactive = newHideWhenInactive;
             }
 
-            if (JobBarsCN.Config.GaugeIndividualScale.Draw($"尺寸{id}", Name, out var newScale)) {
+            if (JobBarsCN.设置.GaugeIndividualScale.Draw($"尺寸{id}", 名称, out var newScale)) {
                 Scale = Math.Max(0.1f, newScale);
                 newVisual = true;
             }
 
-            if (JobBarsCN.Config.GaugePositionType == GaugePositionType.Split) {
-                if (JobBarsCN.Config.GaugeSplitPosition.Draw($"分体位置{id}", Name, out var newPosition)) {
+            if (JobBarsCN.设置.量谱位置类型 == GaugePositionType.Split) {
+                if (JobBarsCN.设置.GaugeSplitPosition.Draw($"分体位置{id}", 名称, out var newPosition)) {
                     SetSplitPosition(newPosition);
                     newVisual = true;
                 }
             }
 
-            if (JobBarsCN.Config.GaugeOrder.Draw($"顺序{id}", Name, Order, out var newOrder)) {
+            if (JobBarsCN.设置.GaugeOrder.Draw($"顺序{id}", 名称, Order, out var newOrder)) {
                 Order = newOrder;
                 newVisual = true;
             }
 
             var validTypes = GetValidGaugeTypes();
             if (validTypes.Length > 1) {
-                if (JobBarsCN.Config.GaugeType.Draw($"Type{id}", Name, validTypes, Type, out var newType)) {
+                if (JobBarsCN.设置.GaugeType.Draw($"Type{id}", 名称, validTypes, Type, out var newType)) {
                     SetType(newType);
                     reset = true;
                 }
@@ -98,7 +98,7 @@ namespace JobBars.Gauges {
             ImGui.SameLine();
 
             ImGui.SetNextItemWidth(200f);
-            if (JobBarsCN.Config.GaugeSoundEffect_2.Draw($"{label} (0 = off)", Name, SoundEffect, out var newSoundEffect)) {
+            if (JobBarsCN.设置.GaugeSoundEffect_2.Draw($"{label} (0 = off)", 名称, SoundEffect, out var newSoundEffect)) {
                 SoundEffect = newSoundEffect;
             }
             ImGui.SameLine();
@@ -112,7 +112,7 @@ namespace JobBars.Gauges {
             ImGui.SameLine();
 
             ImGui.SetNextItemWidth(200f);
-            if (JobBarsCN.Config.GaugeCompletionSoundEffect_2.Draw($"完成音效 (0 = off)", Name, CompletionSoundEffect, out var newSoundEffect)) {
+            if (JobBarsCN.设置.GaugeCompletionSoundEffect_2.Draw($"完成音效 (0 = off)", 名称, CompletionSoundEffect, out var newSoundEffect)) {
                 CompletionSoundEffect = newSoundEffect;
             }
             ImGui.SameLine();
@@ -134,8 +134,8 @@ namespace JobBars.Gauges {
         }
 
         public void DrawPositionBox() {
-            if (JobBarsCN.DrawPositionView(Name + "##量谱位置", Position, out var pos)) {
-                JobBarsCN.Config.GaugeSplitPosition.Set(Name, pos);
+            if (JobBarsCN.DrawPositionView(名称 + "##量谱位置", Position, out var pos)) {
+                JobBarsCN.设置.GaugeSplitPosition.Set(名称, pos);
                 SetSplitPosition(pos);
                 JobBarsCN.GaugeManager.UpdatePositionScale();
             }
@@ -146,7 +146,7 @@ namespace JobBars.Gauges {
         protected abstract void DrawConfig(string id, ref bool newVisual, ref bool reset);
 
         private void SetSplitPosition(Vector2 pos) {
-            JobBarsCN.SetWindowPosition(Name + "##量谱位置", pos);
+            JobBarsCN.SetWindowPosition(名称 + "##量谱位置", pos);
         }
     }
 }

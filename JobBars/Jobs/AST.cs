@@ -15,11 +15,11 @@ namespace JobBars.Jobs {
     public static class AST {
         public static GaugeConfig[] Gauges => new GaugeConfig[] {
             new GaugeProcsConfig($"{UIHelper.Localize(JobIds.AST)} {UIHelper.ProcText}", GaugeVisualType.Diamond, new GaugeProcProps {
-                Procs = new []{
+                进程 = new []{
                     new ProcConfig(UIHelper.Localize(BuffIds.GiantDominance), BuffIds.GiantDominance, UIColor.LightBlue)
                 }
             }),
-            new GaugeTimerConfig(UIHelper.Localize(BuffIds.Combust3), GaugeVisualType.Bar, new GaugeTimerProps {
+            new GaugeTimerConfig(UIHelper.Localize(BuffIds.Combust3), GaugeVisualType.条状, new GaugeTimerProps {
                 SubTimers = new [] {
                     new GaugeSubTimerProps {
                         MaxDuration = 30,
@@ -37,63 +37,63 @@ namespace JobBars.Jobs {
 
         public static BuffConfig[] Buffs => new[] {
             new BuffConfig(UIHelper.Localize(BuffIds.TheBalance), new BuffProps {
-                Duration = 15,
-                Icon = ActionIds.TheBalance,
-                Color = UIColor.Orange,
-                Triggers = new []{ new Item(BuffIds.TheBalance) },
-                ApplyToTarget = true,
-                ShowPartyText = true
+                持续时间 = 15,
+                图标 = ActionIds.TheBalance,
+                颜色 = UIColor.Orange,
+                触发 = new []{ new Item(BuffIds.TheBalance) },
+                应用于目标 = true,
+                显示小队文本 = true
             }),
             new BuffConfig(UIHelper.Localize(BuffIds.TheBole), new BuffProps {
-                Duration = 15,
-                Icon = ActionIds.TheBole,
-                Color = UIColor.BrightGreen,
-                Triggers = new []{ new Item(BuffIds.TheBole) },
-                ApplyToTarget = true,
-                ShowPartyText = true
+                持续时间 = 15,
+                图标 = ActionIds.TheBole,
+                颜色 = UIColor.BrightGreen,
+                触发 = new []{ new Item(BuffIds.TheBole) },
+                应用于目标 = true,
+                显示小队文本 = true
             }),
             new BuffConfig(UIHelper.Localize(BuffIds.TheSpear), new BuffProps {
-                Duration = 15,
-                Icon = ActionIds.TheSpear,
-                Color = UIColor.DarkBlue,
-                Triggers = new []{ new Item(BuffIds.TheSpear) },
-                ApplyToTarget = true,
-                ShowPartyText = true
+                持续时间 = 15,
+                图标 = ActionIds.TheSpear,
+                颜色 = UIColor.DarkBlue,
+                触发 = new []{ new Item(BuffIds.TheSpear) },
+                应用于目标 = true,
+                显示小队文本 = true
             }),
             new BuffConfig(UIHelper.Localize(BuffIds.TheSpire), new BuffProps {
-                Duration = 15,
-                Icon = ActionIds.TheSpire,
-                Color = UIColor.Yellow,
-                Triggers = new []{ new Item(BuffIds.TheSpire) },
-                ApplyToTarget = true,
-                ShowPartyText = true
+                持续时间 = 15,
+                图标 = ActionIds.TheSpire,
+                颜色 = UIColor.Yellow,
+                触发 = new []{ new Item(BuffIds.TheSpire) },
+                应用于目标 = true,
+                显示小队文本 = true
             }),
             new BuffConfig(UIHelper.Localize(BuffIds.TheArrow), new BuffProps {
-                Duration = 15,
-                Icon = ActionIds.TheArrow,
-                Color = UIColor.LightBlue,
-                Triggers = new []{ new Item(BuffIds.TheArrow) },
-                ApplyToTarget = true,
-                ShowPartyText = true
+                持续时间 = 15,
+                图标 = ActionIds.TheArrow,
+                颜色 = UIColor.LightBlue,
+                触发 = new []{ new Item(BuffIds.TheArrow) },
+                应用于目标 = true,
+                显示小队文本 = true
             }),
             new BuffConfig(UIHelper.Localize(BuffIds.TheEwer), new BuffProps {
-                Duration = 15,
-                Icon = ActionIds.TheEwer,
-                Color = UIColor.LightBlue,
-                Triggers = new []{ new Item(BuffIds.TheEwer) },
-                ApplyToTarget = true,
-                ShowPartyText = true
+                持续时间 = 15,
+                图标 = ActionIds.TheEwer,
+                颜色 = UIColor.LightBlue,
+                触发 = new []{ new Item(BuffIds.TheEwer) },
+                应用于目标 = true,
+                显示小队文本 = true
             }),
             new BuffConfig(UIHelper.Localize(ActionIds.Divination), new BuffProps {
                 CD = 120,
-                Duration = 15,
-                Icon = ActionIds.Divination,
-                Color = UIColor.Yellow,
-                Triggers = new []{ new Item(ActionIds.Divination) }
+                持续时间 = 15,
+                图标 = ActionIds.Divination,
+                颜色 = UIColor.Yellow,
+                触发 = new []{ new Item(ActionIds.Divination) }
             })
         };
 
-        public static Cursor Cursors => new(JobIds.AST, CursorType.None, CursorType.CastTime);
+        public static Cursor Cursors => new(JobIds.AST, CursorType.无, CursorType.咏唱时间);
 
         public static CooldownConfig[] Cooldowns => new[] {
             new CooldownConfig(UIHelper.Localize(ActionIds.NeutralSect), new CooldownProps {

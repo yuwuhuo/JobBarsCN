@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace JobBars.Buffs {
     public class BuffPartyMember {
-        private JobIds PartyMemberCurrentJob = JobIds.OTHER;
+        private JobIds 小队队员当前职业 = JobIds.OTHER;
         private readonly List<BuffTracker> Trackers = new();
         private readonly uint ObjectId;
         private readonly bool IsPlayer;
@@ -17,8 +17,8 @@ namespace JobBars.Buffs {
             highlight = false;
             partyText = "";
 
-            if (PartyMemberCurrentJob != partyMember.Job) {
-                PartyMemberCurrentJob = partyMember.Job;
+            if (小队队员当前职业 != partyMember.Job) {
+                小队队员当前职业 = partyMember.Job;
                 SetupTrackers();
             }
 
@@ -29,7 +29,7 @@ namespace JobBars.Buffs {
                 if (tracker.Highlight) {
                     highlight = true;
                 }
-                if (tracker.Active && tracker.ShowPartyText) {
+                if (tracker.Active && tracker.显示小队文本) {
                     partyText = tracker.Text;
                 }
             }
@@ -43,9 +43,9 @@ namespace JobBars.Buffs {
         public void SetupTrackers() {
             Trackers.Clear();
 
-            var trackerProps = JobBarsCN.BuffManager.GetBuffConfigs(PartyMemberCurrentJob);
+            var trackerProps = JobBarsCN.BuffManager.GetBuffConfigs(小队队员当前职业);
             foreach (var prop in trackerProps) {
-                if (!prop.Enabled) continue;
+                if (!prop.启用) continue;
                 Trackers.Add(new BuffTracker(prop));
             }
         }

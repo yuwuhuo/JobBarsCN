@@ -17,7 +17,7 @@ namespace JobBars.Jobs {
     public static class SMN {
         public static GaugeConfig[] Gauges => new GaugeConfig[] {
             new GaugeProcsConfig(UIHelper.Localize(BuffIds.FurtherRuin), GaugeVisualType.Diamond, new GaugeProcProps{
-                Procs = new []{
+                进程 = new []{
                     new ProcConfig(UIHelper.Localize(BuffIds.FurtherRuin), BuffIds.FurtherRuin, UIColor.DarkBlue)
                 }
             }),
@@ -56,28 +56,28 @@ namespace JobBars.Jobs {
         public static BuffConfig[] Buffs => new[] {
             new BuffConfig(UIHelper.Localize(ActionIds.SearingLight), new BuffProps {
                 CD = 120,
-                Duration = 30,
-                Icon = ActionIds.SearingLight,
-                Color = UIColor.Purple,
-                Triggers = new []{ new Item(ActionIds.SearingLight) }
+                持续时间 = 30,
+                图标 = ActionIds.SearingLight,
+                颜色 = UIColor.Purple,
+                触发 = new []{ new Item(ActionIds.SearingLight) }
             }),
             new BuffConfig(UIHelper.Localize(ActionIds.SummonBahamut), new BuffProps {
                 CD = 120,
-                Duration = 15,
-                Icon = ActionIds.SummonBahamut,
-                Color = UIColor.LightBlue,
-                Triggers = new []{ new Item(ActionIds.SummonBahamut) }
+                持续时间 = 15,
+                图标 = ActionIds.SummonBahamut,
+                颜色 = UIColor.LightBlue,
+                触发 = new []{ new Item(ActionIds.SummonBahamut) }
             }),
             new BuffConfig(UIHelper.Localize(ActionIds.SummonPhoenix), new BuffProps {
                 CD = 120,
-                Duration = 15,
-                Icon = ActionIds.SummonPhoenix,
-                Color = UIColor.Orange,
-                Triggers = new []{ new Item(ActionIds.SummonPhoenix) }
+                持续时间 = 15,
+                图标 = ActionIds.SummonPhoenix,
+                颜色 = UIColor.Orange,
+                触发 = new []{ new Item(ActionIds.SummonPhoenix) }
             })
         };
 
-        public static Cursor Cursors => new(JobIds.SMN, CursorType.None, CursorType.CastTime);
+        public static Cursor Cursors => new(JobIds.SMN, CursorType.无, CursorType.咏唱时间);
 
         public static CooldownConfig[] Cooldowns => new[] {
             new CooldownConfig($"{UIHelper.Localize(ActionIds.Addle)} ({UIHelper.Localize(JobIds.SMN)})", new CooldownProps {

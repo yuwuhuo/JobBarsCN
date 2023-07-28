@@ -14,7 +14,7 @@ using System;
 namespace JobBars.Jobs {
     public static class WHM {
         public static GaugeConfig[] Gauges => new GaugeConfig[] {
-            new GaugeTimerConfig(UIHelper.Localize(BuffIds.Dia), GaugeVisualType.Bar, new GaugeTimerProps {
+            new GaugeTimerConfig(UIHelper.Localize(BuffIds.Dia), GaugeVisualType.条状, new GaugeTimerProps {
                 SubTimers = new [] {
                     new GaugeSubTimerProps {
                         MaxDuration = 30,
@@ -39,7 +39,7 @@ namespace JobBars.Jobs {
 
         public static BuffConfig[] Buffs => Array.Empty<BuffConfig>();
 
-        public static Cursor Cursors => new(JobIds.WHM, CursorType.None, CursorType.CastTime);
+        public static Cursor Cursors => new(JobIds.WHM, CursorType.无, CursorType.咏唱时间);
 
         public static CooldownConfig[] Cooldowns => new[] {
             new CooldownConfig(UIHelper.Localize(ActionIds.Temperance), new CooldownProps {

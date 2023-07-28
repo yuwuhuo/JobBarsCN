@@ -35,11 +35,11 @@ namespace JobBars.Jobs {
                 SameColor = true,
                 Parts = new []{
                     new GaugesChargesPartProps {
-                        Bar = true,
-                        Diamond = true,
+                        栏 = true,
+                        棱形 = true,
                         CD = 30,
                         MaxCharges = 3,
-                        Triggers = new[] { new Item(ActionIds.GaussRound) }
+                        触发 = new[] { new Item(ActionIds.GaussRound) }
                     }
                 }
             }),
@@ -48,11 +48,11 @@ namespace JobBars.Jobs {
                 SameColor = true,
                 Parts = new []{
                     new GaugesChargesPartProps {
-                        Bar = true,
-                        Diamond = true,
+                        栏 = true,
+                        棱形 = true,
                         CD = 30,
                         MaxCharges = 3,
-                        Triggers = new[] { new Item(ActionIds.Ricochet) }
+                        触发 = new[] { new Item(ActionIds.Ricochet) }
                     }
                 }
             })
@@ -61,14 +61,14 @@ namespace JobBars.Jobs {
         public static BuffConfig[] Buffs => new[] {
             new BuffConfig(UIHelper.Localize(ActionIds.Wildfire), new BuffProps {
                 CD = 120,
-                Duration = 10,
-                Icon = ActionIds.Wildfire,
-                Color = UIColor.Orange,
-                Triggers = new []{ new Item(ActionIds.Wildfire) }
+                持续时间 = 10,
+                图标 = ActionIds.Wildfire,
+                颜色 = UIColor.Orange,
+                触发 = new []{ new Item(ActionIds.Wildfire) }
             })
         };
 
-        public static Cursor Cursors => new(JobIds.MCH, CursorType.None, CursorType.GCD);
+        public static Cursor Cursors => new(JobIds.MCH, CursorType.无, CursorType.GCD);
 
         public static CooldownConfig[] Cooldowns => new[] {
             new CooldownConfig(UIHelper.Localize(ActionIds.Tactician), new CooldownProps {

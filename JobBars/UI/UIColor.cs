@@ -74,8 +74,8 @@ namespace JobBars.UI {
         }
 
         // ======== COLORS ======
-        public static readonly ElementColor MpPink = new("蓝条粉", 120, 0, 60, 90, 75, 75);
-        public static readonly ElementColor HealthGreen = new("生命绿", 20, 75, 0, 80, 80, 40);
+        public static readonly ElementColor 法条色 = new("法条粉", 120, 0, 60, 90, 75, 75);
+        public static readonly ElementColor HealthGreen = new("血条绿", 20, 75, 0, 80, 80, 40);
         public static readonly ElementColor Purple = new("基佬紫", 50, 0, 150, 80, 75, 80);
         public static readonly ElementColor Red = new("红色", 150, 0, 0, 80, 80, 80);
         public static readonly ElementColor LightBlue = new("青色", 0, 100, 140, 80, 100, 100);
@@ -93,7 +93,7 @@ namespace JobBars.UI {
         public static void SetupColors() {
             AllColors = new();
             AllColors.Add(NoColor.Name, NoColor);
-            AllColors.Add(MpPink.Name, MpPink);
+            AllColors.Add(法条色.Name, 法条色);
             AllColors.Add(HealthGreen.Name, HealthGreen);
             AllColors.Add(Purple.Name, Purple);
             AllColors.Add(Red.Name, Red);

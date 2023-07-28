@@ -47,7 +47,7 @@ namespace JobBars.Gauges.MP {
             _ => false
         };
 
-        public virtual ElementColor GetColor() => Config.Color;
+        public virtual ElementColor GetColor() => Config.颜色;
 
         public virtual bool GetBarDanger() => false;
 

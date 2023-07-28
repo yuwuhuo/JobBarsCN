@@ -32,7 +32,7 @@ namespace JobBars {
         public static SigScanner SigScanner { get; private set; }
         public static DataManager DataManager { get; private set; }
 
-        public static Configuration Config { get; private set; }
+        public static Configuration 设置 { get; private set; }
         public static UIBuilder Builder { get; private set; }
         public static UIIconManager IconBuilder { get; private set; }
 
@@ -94,21 +94,21 @@ namespace JobBars {
 
             // Upgrade if config is too old
             try {
-                Config = PluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
+                设置 = PluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
             }
             catch (Exception e) {
                 PluginLog.LogError("加载失败", e);
-                Config = new Configuration();
-                Config.Save();
+                设置 = new Configuration();
+                设置.Save();
             }
-            if (Config.Version < 1) {
+            if (设置.Version < 1) {
                 PluginLog.Log("设置版本过旧");
-                Config = new Configuration();
-                Config.Save();
+                设置 = new Configuration();
+                设置.Save();
             }
 
-            AttachAddon = Config.AttachAddon;
-            CooldownAttachAddon = Config.CooldownAttachAddon;
+            AttachAddon = 设置.AttachAddon;
+            CooldownAttachAddon = 设置.CooldownAttachAddon;
             IconBuilder = new UIIconManager();
 
             // ==========================
@@ -184,7 +184,7 @@ namespace JobBars {
             Builder = null;
 
             PluginInterface = null;
-            Config = null;
+            设置 = null;
 
             RemoveCommands();
         }
@@ -266,7 +266,7 @@ namespace JobBars {
             var millis = time.Second * 1000 + time.Millisecond;
             var percent = (float)(millis % 1000) / 1000;
 
-            Builder.Tick(Config.GaugePulse ? percent : 0f);
+            Builder.Tick(设置.GaugePulse ? percent : 0f);
         }
 
         // ======= COMMANDS ============

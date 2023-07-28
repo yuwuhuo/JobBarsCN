@@ -22,7 +22,7 @@ namespace JobBars.Jobs {
                 },
                 Color = UIColor.Orange
             }),
-            new GaugeTimerConfig(UIHelper.Localize(BuffIds.SurgingTempest), GaugeVisualType.Bar, new GaugeSubTimerProps {
+            new GaugeTimerConfig(UIHelper.Localize(BuffIds.SurgingTempest), GaugeVisualType.条状, new GaugeSubTimerProps {
                 MaxDuration = 60,
                 DefaultDuration = 30,
                 Color = UIColor.Red,
@@ -34,15 +34,15 @@ namespace JobBars.Jobs {
 
         public static BuffConfig[] Buffs => new[] {
             new BuffConfig(UIHelper.Localize(BuffIds.InnerRelease), new BuffProps {
-                Duration = 15,
+                持续时间 = 15,
                 CD = 60,
-                Icon = ActionIds.InnerRelease,
-                Color = UIColor.Orange,
-                Triggers = new []{ new Item(BuffIds.InnerRelease) }
+                图标 = ActionIds.InnerRelease,
+                颜色 = UIColor.Orange,
+                触发 = new []{ new Item(BuffIds.InnerRelease) }
             })
         };
 
-        public static Cursor Cursors => new(JobIds.WAR, CursorType.None, CursorType.GCD);
+        public static Cursor Cursors => new(JobIds.WAR, CursorType.无, CursorType.GCD);
 
         public static CooldownConfig[] Cooldowns => new[] {
             new CooldownConfig(UIHelper.Localize(ActionIds.Holmgang), new CooldownProps {

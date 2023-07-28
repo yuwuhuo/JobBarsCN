@@ -25,26 +25,26 @@ namespace JobBars.Jobs {
                 Color = UIColor.Orange
             }),
             new GaugeProcsConfig(UIHelper.Localize(BuffIds.LeadenFist), GaugeVisualType.Diamond, new GaugeProcProps{
-                Procs = new []{
+                进程 = new []{
                     new ProcConfig(UIHelper.Localize(BuffIds.LeadenFist), BuffIds.LeadenFist, UIColor.Yellow)
                 },
-                ProcSound = GaugeCompleteSoundType.Never
+                进程音效 = GaugeCompleteSoundType.Never
             }),
-            new GaugeTimerConfig(UIHelper.Localize(BuffIds.DisciplinedFist), GaugeVisualType.Bar, new GaugeSubTimerProps {
+            new GaugeTimerConfig(UIHelper.Localize(BuffIds.DisciplinedFist), GaugeVisualType.条状, new GaugeSubTimerProps {
                 MaxDuration = 15,
                 Color = UIColor.PurplePink,
                 Triggers = new []{
                     new Item(BuffIds.DisciplinedFist)
                 }
             }),
-            new GaugeTimerConfig(UIHelper.Localize(BuffIds.Demolish), GaugeVisualType.Bar, new GaugeSubTimerProps {
+            new GaugeTimerConfig(UIHelper.Localize(BuffIds.Demolish), GaugeVisualType.条状, new GaugeSubTimerProps {
                 MaxDuration = 18,
                 Color = UIColor.Yellow,
                 Triggers = new [] {
                     new Item(BuffIds.Demolish)
                 }
             }),
-            new GaugeGCDConfig(UIHelper.Localize(BuffIds.RiddleOfFire), GaugeVisualType.Bar, new GaugeSubGCDProps {
+            new GaugeGCDConfig(UIHelper.Localize(BuffIds.RiddleOfFire), GaugeVisualType.条状, new GaugeSubGCDProps {
                 MaxCounter = 11,
                 MaxDuration = 20,
                 Color = UIColor.Red,
@@ -57,15 +57,15 @@ namespace JobBars.Jobs {
                 SameColor = true,
                 Parts = new []{
                     new GaugesChargesPartProps {
-                        Diamond = true,
+                        棱形 = true,
                         MaxCharges = 2,
                         CD = 45,
-                        Triggers = new []{  new Item(ActionIds.TrueNorth) }
+                        触发 = new []{  new Item(ActionIds.TrueNorth) }
                     },
                     new GaugesChargesPartProps {
-                        Bar = true,
-                        Duration = 10,
-                        Triggers = new []{ new Item(BuffIds.TrueNorth) }
+                        栏 = true,
+                        持续时间 = 10,
+                        触发 = new []{ new Item(BuffIds.TrueNorth) }
                     }
                 },
                 CompletionSound = GaugeCompleteSoundType.Never
@@ -75,21 +75,21 @@ namespace JobBars.Jobs {
         public static BuffConfig[] Buffs => new[] {
             new BuffConfig(UIHelper.Localize(ActionIds.Brotherhood), new BuffProps {
                 CD = 120,
-                Duration = 15,
-                Icon = ActionIds.Brotherhood,
-                Color = UIColor.Orange,
-                Triggers = new []{ new Item(ActionIds.Brotherhood) }
+                持续时间 = 15,
+                图标 = ActionIds.Brotherhood,
+                颜色 = UIColor.Orange,
+                触发 = new []{ new Item(ActionIds.Brotherhood) }
             }),
             new BuffConfig(UIHelper.Localize(ActionIds.RiddleOfFire), new BuffProps {
                 CD = 60,
-                Duration = 20,
-                Icon = ActionIds.RiddleOfFire,
-                Color = UIColor.Red,
-                Triggers = new []{ new Item(ActionIds.RiddleOfFire) }
+                持续时间 = 20,
+                图标 = ActionIds.RiddleOfFire,
+                颜色 = UIColor.Red,
+                触发 = new []{ new Item(ActionIds.RiddleOfFire) }
             })
         };
 
-        public static Cursor Cursors => new(JobIds.MNK, CursorType.None, CursorType.GCD);
+        public static Cursor Cursors => new(JobIds.MNK, CursorType.无, CursorType.GCD);
 
         public static CooldownConfig[] Cooldowns => new[] {
             new CooldownConfig($"{UIHelper.Localize(ActionIds.Feint)} ({UIHelper.Localize(JobIds.MNK)})", new CooldownProps {

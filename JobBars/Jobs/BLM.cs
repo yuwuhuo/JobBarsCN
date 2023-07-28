@@ -16,8 +16,8 @@ namespace JobBars.Jobs {
     public static class BLM {
         public static GaugeConfig[] Gauges => new GaugeConfig[] {
             new GaugeProcsConfig($"{UIHelper.Localize(JobIds.BLM)} {UIHelper.ProcText}", GaugeVisualType.Diamond, new GaugeProcProps{
-                ShowText = true,
-                Procs = new []{
+                显示文本 = true,
+                进程 = new []{
                     new ProcConfig(UIHelper.Localize(BuffIds.Firestarter), BuffIds.Firestarter, UIColor.Orange),
                     new ProcConfig(UIHelper.Localize(BuffIds.Thundercloud), BuffIds.Thundercloud, UIColor.LightBlue)
                 }
@@ -27,9 +27,9 @@ namespace JobBars.Jobs {
                 Triggers = new []{
                     new Item(BuffIds.Triplecast)
                 },
-                Color = UIColor.MpPink
+                Color = UIColor.法条色
             }),
-            new GaugeTimerConfig(UIHelper.Localize(BuffIds.Thunder3), GaugeVisualType.Bar, new GaugeTimerProps {
+            new GaugeTimerConfig(UIHelper.Localize(BuffIds.Thunder3), GaugeVisualType.条状, new GaugeTimerProps {
                 SubTimers = new[] {
                     new GaugeSubTimerProps {
                         MaxDuration = 30,
@@ -55,7 +55,7 @@ namespace JobBars.Jobs {
 
         public static BuffConfig[] Buffs => Array.Empty<BuffConfig>();
 
-        public static Cursor Cursors => new(JobIds.BLM, CursorType.MpTick, CursorType.CastTime);
+        public static Cursor Cursors => new(JobIds.BLM, CursorType.跳蓝, CursorType.咏唱时间);
 
         public static CooldownConfig[] Cooldowns => new[] {
             new CooldownConfig($"{UIHelper.Localize(ActionIds.Addle)} ({UIHelper.Localize(JobIds.BLM)})", new CooldownProps {

@@ -22,21 +22,21 @@ namespace JobBars.Jobs {
                 },
                 Color = UIColor.BlueGreen
             }),
-            new GaugeTimerConfig(UIHelper.Localize(BuffIds.Fugetsu), GaugeVisualType.Bar, new GaugeSubTimerProps {
+            new GaugeTimerConfig(UIHelper.Localize(BuffIds.Fugetsu), GaugeVisualType.条状, new GaugeSubTimerProps {
                 MaxDuration = 40,
                 Color = UIColor.DarkBlue,
                 Triggers = new []{
                     new Item(BuffIds.Fugetsu)
                 }
             }),
-            new GaugeTimerConfig(UIHelper.Localize(BuffIds.Fuka), GaugeVisualType.Bar, new GaugeSubTimerProps {
+            new GaugeTimerConfig(UIHelper.Localize(BuffIds.Fuka), GaugeVisualType.条状, new GaugeSubTimerProps {
                 MaxDuration = 40,
                 Color = UIColor.Red,
                 Triggers = new []{
                     new Item(BuffIds.Fuka)
                 }
             }),
-            new GaugeTimerConfig(UIHelper.Localize(BuffIds.Higanbana), GaugeVisualType.Bar, new GaugeSubTimerProps {
+            new GaugeTimerConfig(UIHelper.Localize(BuffIds.Higanbana), GaugeVisualType.条状, new GaugeSubTimerProps {
                 MaxDuration = 60,
                 Color = UIColor.Orange,
                 Triggers = new []{
@@ -48,17 +48,17 @@ namespace JobBars.Jobs {
                 SameColor = true,
                 Parts = new []{
                     new GaugesChargesPartProps {
-                        Diamond = true,
+                        棱形 = true,
                         MaxCharges = 2,
                         CD = 45,
-                        Triggers = new []{
+                        触发 = new []{
                             new Item(ActionIds.TrueNorth)
                         }
                     },
                     new GaugesChargesPartProps {
-                        Bar = true,
-                        Duration = 10,
-                        Triggers = new []{
+                        栏 = true,
+                        持续时间 = 10,
+                        触发 = new []{
                             new Item(BuffIds.TrueNorth)
                         }
                     }
@@ -70,14 +70,14 @@ namespace JobBars.Jobs {
         public static BuffConfig[] Buffs => new[] {
             new BuffConfig(UIHelper.Localize(ActionIds.OgiNamikiri), new BuffProps {
                 CD = 120,
-                Duration = 30,
-                Icon = ActionIds.OgiNamikiri,
-                Color = UIColor.Red,
-                Triggers = new []{ new Item(BuffIds.OgiNamikiri) }
+                持续时间 = 30,
+                图标 = ActionIds.OgiNamikiri,
+                颜色 = UIColor.Red,
+                触发 = new []{ new Item(BuffIds.OgiNamikiri) }
             })
         };
 
-        public static Cursor Cursors => new(JobIds.SAM, CursorType.None, CursorType.GCD);
+        public static Cursor Cursors => new(JobIds.SAM, CursorType.无, CursorType.GCD);
 
         public static CooldownConfig[] Cooldowns => new[] {
             new CooldownConfig($"{UIHelper.Localize(ActionIds.Feint)} ({UIHelper.Localize(JobIds.SAM)})", new CooldownProps {

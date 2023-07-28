@@ -66,7 +66,7 @@ namespace JobBars.Helper {
                     var imageNode = node.Node;
                     var path = node.Path;
 
-                    var version = JobBarsCN.Config.Use4K ? 2u : 1u;
+                    var version = JobBarsCN.设置.Use4K ? 2u : 1u;
                     imageNode->LoadTexture(path, version);
                 }
             }

@@ -80,9 +80,9 @@ namespace JobBars.Gauges.GCD {
                 }
             }
 
-            public ElementColor GetColor() => Config.Color;
+            public ElementColor GetColor() => Config.颜色;
 
-            public ElementColor GetTickColor(int _) => Config.Color;
+            public ElementColor GetTickColor(int _) => Config.颜色;
 
             public bool GetActive() => State != GaugeState.Inactive;
 

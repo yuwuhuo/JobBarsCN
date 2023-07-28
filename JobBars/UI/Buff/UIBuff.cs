@@ -6,8 +6,8 @@ using JobBars.Helper;
 
 namespace JobBars.UI {
     public unsafe class UIBuff : UIElement {
-        public static ushort WIDTH => (ushort)(JobBarsCN.Config.BuffSquare ? 40 : 36);
-        public static ushort HEIGHT => (ushort)(JobBarsCN.Config.BuffSquare ? 40 : 28);
+        public static ushort WIDTH => (ushort)(JobBarsCN.设置.BuffSquare ? 40 : 36);
+        public static ushort HEIGHT => (ushort)(JobBarsCN.设置.BuffSquare ? 40 : 28);
 
         private AtkTextNode* TextNode;
         private AtkImageNode* Overlay;
@@ -18,7 +18,7 @@ namespace JobBars.UI {
         public ActionIds IconId => LastIconId;
 
         private string CurrentText = "";
-        private static int BUFFS_HORIZONTAL => JobBarsCN.Config.BuffHorizontal;
+        private static int BUFFS_HORIZONTAL => JobBarsCN.设置.BuffHorizontal;
 
         public UIBuff() : base() {
             RootRes = UIBuilder.CreateResNode();
@@ -46,15 +46,15 @@ namespace JobBars.UI {
             Border->AtkResNode.X = -4;
             Border->AtkResNode.Y = -3;
             UIHelper.SetupTexture(Border, "ui/uld/IconA_Frame.tex");
-            SetBorderThin(JobBarsCN.Config.BuffThinBorder);
+            SetBorderThin(JobBarsCN.设置.BuffThinBorder);
             Border->TopOffset = 5;
             Border->BottomOffset = 5;
             Border->LeftOffset = 5;
             Border->RightOffset = 5;
 
             TextNode = UIBuilder.CreateTextNode();
-            TextNode->FontSize = (byte)JobBarsCN.Config.BuffTextSize_v2;
-            TextNode->LineSpacing = (byte)JobBarsCN.Config.BuffTextSize_v2;
+            TextNode->FontSize = (byte)JobBarsCN.设置.BuffTextSize_v2;
+            TextNode->LineSpacing = (byte)JobBarsCN.设置.BuffTextSize_v2;
             TextNode->AlignmentFontType = 52;
             TextNode->AtkResNode.X = 0;
             TextNode->AtkResNode.Y = 0;
@@ -127,8 +127,8 @@ namespace JobBars.UI {
             var position_x = BUFFS_HORIZONTAL == 0 ? 0 : idx % BUFFS_HORIZONTAL;
             var position_y = BUFFS_HORIZONTAL == 0 ? 0 : (idx - position_x) / BUFFS_HORIZONTAL;
 
-            int xMod = JobBarsCN.Config.BuffRightToLeft ? -1 : 1;
-            int yMod = JobBarsCN.Config.BuffBottomToTop ? -1 : 1;
+            int xMod = JobBarsCN.设置.BuffRightToLeft ? -1 : 1;
+            int yMod = JobBarsCN.设置.BuffBottomToTop ? -1 : 1;
 
             UIHelper.SetPosition(RootRes, xMod * (WIDTH + 9) * position_x, yMod * (HEIGHT + 7) * position_y);
         }
@@ -168,7 +168,7 @@ namespace JobBars.UI {
         }
 
         public void SetColor(ElementColor color) {
-            if (JobBarsCN.Config.BuffThinBorder) {
+            if (JobBarsCN.设置.BuffThinBorder) {
                 UIColor.SetColor(Border, UIColor.NoColor);
                 return;
             }

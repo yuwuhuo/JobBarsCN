@@ -14,9 +14,9 @@ using System;
 namespace JobBars.Jobs {
     public static class SGE {
         public static GaugeConfig[] Gauges => new GaugeConfig[] {
-            new GaugeTimerConfig(UIHelper.Localize(BuffIds.EukrasianDosis), GaugeVisualType.Bar, new GaugeSubTimerProps {
+            new GaugeTimerConfig(UIHelper.Localize(BuffIds.EukrasianDosis), GaugeVisualType.条状, new GaugeSubTimerProps {
                 MaxDuration = 30,
-                Color = UIColor.MpPink,
+                Color = UIColor.法条色,
                 Triggers = new []{
                     new Item(BuffIds.EukrasianDosis),
                     new Item(BuffIds.EukrasianDosis2),
@@ -28,7 +28,7 @@ namespace JobBars.Jobs {
         public static BuffConfig[] Buffs => new BuffConfig[] {
         };
 
-        public static Cursor Cursors => new(JobIds.SGE, CursorType.None, CursorType.CastTime);
+        public static Cursor Cursors => new(JobIds.SGE, CursorType.无, CursorType.咏唱时间);
 
         public static CooldownConfig[] Cooldowns => new CooldownConfig[] {
             new CooldownConfig(UIHelper.Localize(ActionIds.Pneuma), new CooldownProps {

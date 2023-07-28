@@ -11,8 +11,8 @@ namespace JobBars.Buffs {
     public class BuffTracker {
         public enum BuffState {
             None, // hidden
-            Running, // bright, show countdown
-            OffCD, // bright, no text
+            Running, // 亮，显示倒计时
+            OffCD, // 亮，无文字
             OnCD_Hidden,
             OnCD_Visible // dark, show countdown
         }
@@ -28,12 +28,12 @@ namespace JobBars.Buffs {
         private UIBuff UI;
 
         public BuffState CurrentState => State;
-        public uint Id => (uint)Config.Icon;
+        public uint Id => (uint)Config.图标;
         public bool Enabled => (State == BuffState.Running || State == BuffState.OffCD || State == BuffState.OnCD_Visible);
         public bool Active => State == BuffState.Running;
-        public bool Highlight => Active && Config.PartyListHighlight;
-        public bool ShowPartyText => Config.ShowPartyText;
-        public bool ApplyToTarget => Config.ApplyToTarget;
+        public bool Highlight => Active && Config.小队列表Buff高亮;
+        public bool 显示小队文本 => Config.显示小队文本;
+        public bool ApplyToTarget => Config.应用于目标;
         public string Text => ((int)Math.Round(TimeLeft)).ToString();
 
         public BuffTracker(BuffConfig config) {
@@ -41,7 +41,7 @@ namespace JobBars.Buffs {
         }
 
         public void ProcessAction(Item action) {
-            if (Config.Triggers.Contains(action)) SetActive(action);
+            if (Config.触发.Contains(action)) SetActive(action);
         }
 
         private void SetActive(Item trigger) {
@@ -51,19 +51,19 @@ namespace JobBars.Buffs {
         }
 
         public void Tick(Dictionary<Item, Status> buffDict) {
-            if (State != BuffState.Running && UIHelper.CheckForTriggers(buffDict, Config.Triggers, out var trigger)) SetActive(trigger);
+            if (State != BuffState.Running && UIHelper.CheckForTriggers(buffDict, Config.触发, out var trigger)) SetActive(trigger);
 
             if (State == BuffState.Running) {
-                TimeLeft = UIHelper.TimeLeft(Config.Duration, buffDict, LastActiveTrigger, LastActiveTime);
+                TimeLeft = UIHelper.TimeLeft(Config.持续时间, buffDict, LastActiveTrigger, LastActiveTime);
                 if (TimeLeft <= 0) { // Buff over
                     Percent = 1f;
                     TimeLeft = 0;
 
                     State = Config.CD <= 0 ? BuffState.None : // doesn't have a cooldown, just make it invisible
-                        Config.CD <= JobBarsCN.Config.BuffDisplayTimer ? BuffState.OnCD_Visible : BuffState.OnCD_Hidden;
+                        Config.CD <= JobBarsCN.设置.BuffDisplayTimer ? BuffState.OnCD_Visible : BuffState.OnCD_Hidden;
                 }
                 else { // Still running
-                    Percent = 1.0f - (float)(TimeLeft / Config.Duration);
+                    Percent = 1.0f - (float)(TimeLeft / Config.持续时间);
                 }
             }
             else if (State == BuffState.OnCD_Hidden || State == BuffState.OnCD_Visible) {
@@ -72,7 +72,7 @@ namespace JobBars.Buffs {
                 if (TimeLeft <= 0) {
                     State = BuffState.OffCD;
                 }
-                else if (TimeLeft <= JobBarsCN.Config.BuffDisplayTimer) { // CD low enough to be visible
+                else if (TimeLeft <= JobBarsCN.设置.BuffDisplayTimer) { // CD low enough to be visible
                     State = BuffState.OnCD_Visible;
                     Percent = TimeLeft / Config.CD;
                 }
@@ -80,13 +80,13 @@ namespace JobBars.Buffs {
         }
 
         public void TickUI(UIBuff ui) {
-            if (UI != ui || UI?.IconId != Config.Icon) {
+            if (UI != ui || UI?.IconId != Config.图标) {
                 UI = ui;
                 SetupUI();
             }
 
             UI.Show();
-            UI.SetColor(Config.Color);
+            UI.SetColor(Config.颜色);
 
             if (State == BuffState.Running) {
                 UI.SetOffCD();
@@ -99,14 +99,14 @@ namespace JobBars.Buffs {
                 UI.SetText("");
             }
             else if (State == BuffState.OnCD_Visible) {
-                UI.SetOnCD(JobBarsCN.Config.BuffOnCDOpacity);
+                UI.SetOnCD(JobBarsCN.设置.BuffOnCDOpacity);
                 UI.SetPercent(Percent);
                 UI.SetText(Text);
             }
         }
 
         private void SetupUI() {
-            UI.LoadIcon(Config.Icon);
+            UI.LoadIcon(Config.图标);
         }
 
         public void Reset() {

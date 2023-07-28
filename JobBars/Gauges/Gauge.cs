@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace JobBars.Gauges {
     public enum GaugeVisualType {
-        Bar,
+        条状,
         Arrow,
         Diamond,
         BarDiamondCombo

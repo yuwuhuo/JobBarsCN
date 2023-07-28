@@ -26,7 +26,7 @@ namespace JobBars.Jobs {
 
         public static BuffConfig[] Buffs => Array.Empty<BuffConfig>();
 
-        public static Cursor Cursors => new(JobIds.GNB, CursorType.None, CursorType.GCD);
+        public static Cursor Cursors => new(JobIds.GNB, CursorType.无, CursorType.GCD);
 
         public static CooldownConfig[] Cooldowns => new[] {
             new CooldownConfig(UIHelper.Localize(ActionIds.Superbolide), new CooldownProps {

@@ -13,8 +13,8 @@ namespace JobBars.Cursors.Manager {
         private ElementColor OuterColor;
 
         public CursorManager() : base("##职业__光标") {
-            InnerColor = UIColor.GetColor(JobBarsCN.Config.CursorInnerColor, UIColor.MpPink);
-            OuterColor = UIColor.GetColor(JobBarsCN.Config.CursorOuterColor, UIColor.HealthGreen);
+            InnerColor = UIColor.GetColor(JobBarsCN.设置.CursorInnerColor, UIColor.法条色);
+            OuterColor = UIColor.GetColor(JobBarsCN.设置.CursorOuterColor, UIColor.HealthGreen);
 
             JobBarsCN.Builder.SetCursorInnerColor(InnerColor);
             JobBarsCN.Builder.SetCursorOuterColor(OuterColor);
@@ -25,7 +25,7 @@ namespace JobBars.Cursors.Manager {
         }
 
         public void Tick() {
-            if (UIHelper.CalcDoHide(JobBarsCN.Config.CursorsEnabled, JobBarsCN.Config.CursorHideOutOfCombat, JobBarsCN.Config.CursorHideWeaponSheathed)) {
+            if (UIHelper.CalcDoHide(JobBarsCN.设置.CursorsEnabled, JobBarsCN.设置.CursorHideOutOfCombat, JobBarsCN.设置.CursorHideWeaponSheathed)) {
                 JobBarsCN.Builder.HideCursor();
                 return;
             }
@@ -43,12 +43,12 @@ namespace JobBars.Cursors.Manager {
 
             var viewport = ImGuiHelpers.MainViewport;
 
-            if (JobBarsCN.Config.CursorPosition == CursorPositionType.MouseCursor) {
+            if (JobBarsCN.设置.CursorPosition == CursorPositionType.MouseCursor) {
                 var pos = ImGui.GetMousePos() - viewport.Pos;
                 var atkStage = AtkStage.GetSingleton();
 
                 var dragging = *((byte*)new IntPtr(atkStage) + 0x137);
-                if (JobBarsCN.Config.CursorHideWhenHeld && dragging != 1) {
+                if (JobBarsCN.设置.CursorHideWhenHeld && dragging != 1) {
                     JobBarsCN.Builder.HideCursor();
                     return;
                 }
@@ -60,13 +60,13 @@ namespace JobBars.Cursors.Manager {
             }
             else {
                 JobBarsCN.Builder.ShowCursor();
-                JobBarsCN.Builder.SetCursorPosition(JobBarsCN.Config.CursorPosition == CursorPositionType.Middle ? viewport.Size / 2 : JobBarsCN.Config.CursorCustomPosition);
+                JobBarsCN.Builder.SetCursorPosition(JobBarsCN.设置.CursorPosition == CursorPositionType.Middle ? viewport.Size / 2 : JobBarsCN.设置.CursorCustomPosition);
             }
 
             var inner = CurrentCursor.GetInner();
             var outer = CurrentCursor.GetOuter();
-            JobBarsCN.Builder.SetCursorInnerPercent(inner, JobBarsCN.Config.CursorInnerScale);
-            JobBarsCN.Builder.SetCursorOuterPercent(outer, JobBarsCN.Config.CursorOuterScale);
+            JobBarsCN.Builder.SetCursorInnerPercent(inner, JobBarsCN.设置.CursorInnerScale);
+            JobBarsCN.Builder.SetCursorOuterPercent(outer, JobBarsCN.设置.CursorOuterScale);
         }
     }
 }

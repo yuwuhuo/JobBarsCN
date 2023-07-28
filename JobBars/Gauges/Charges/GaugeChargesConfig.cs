@@ -10,17 +10,17 @@ namespace JobBars.Gauges.Charges {
     }
 
     public struct GaugesChargesPartProps {
-        public Item[] Triggers;
-        public float Duration;
+        public Item[] 触发;
+        public float 持续时间;
         public float CD;
-        public bool Bar;
-        public bool Diamond;
+        public bool 栏;
+        public bool 棱形;
         public int MaxCharges;
         public ElementColor Color;
     }
 
     public class GaugeChargesConfig : GaugeConfig {
-        private static readonly GaugeVisualType[] ValidGaugeVisualType = new[] { GaugeVisualType.BarDiamondCombo, GaugeVisualType.Bar, GaugeVisualType.Diamond };
+        private static readonly GaugeVisualType[] ValidGaugeVisualType = new[] { GaugeVisualType.BarDiamondCombo, GaugeVisualType.条状, GaugeVisualType.Diamond };
         protected override GaugeVisualType[] GetValidGaugeTypes() => ValidGaugeVisualType;
 
         public GaugesChargesPartProps[] Parts { get; private set; }
@@ -32,27 +32,27 @@ namespace JobBars.Gauges.Charges {
         public GaugeChargesConfig(string name, GaugeVisualType type, GaugeChargesProps props) : base(name, type) {
             Parts = props.Parts;
             SameColor = props.SameColor;
-            BarColor = JobBarsCN.Config.GaugeColor.Get(Name, props.BarColor);
-            CompletionSound = JobBarsCN.Config.GaugeCompletionSound.Get(Name, props.CompletionSound);
-            ReverseFill = JobBarsCN.Config.GaugeReverseFill.Get(Name, false);
+            BarColor = JobBarsCN.设置.量谱颜色.Get(名称, props.BarColor);
+            CompletionSound = JobBarsCN.设置.量谱填满音效.Get(名称, props.CompletionSound);
+            ReverseFill = JobBarsCN.设置.GaugeReverseFill.Get(名称, false);
         }
 
         public override GaugeTracker GetTracker(int idx) => new GaugeChargesTracker(this, idx);
 
         protected override void DrawConfig(string id, ref bool newVisual, ref bool reset) {
-            if (JobBarsCN.Config.GaugeColor.Draw($"颜色{id}", Name, BarColor, out var newColor)) {
+            if (JobBarsCN.设置.量谱颜色.Draw($"颜色{id}", 名称, BarColor, out var newColor)) {
                 BarColor = newColor;
                 newVisual = true;
             }
 
-            if (JobBarsCN.Config.GaugeCompletionSound.Draw($"完成音效{id}", Name, ValidSoundType, CompletionSound, out var newCompletionSound)) {
+            if (JobBarsCN.设置.量谱填满音效.Draw($"完成音效{id}", 名称, 生效音效类型, CompletionSound, out var newCompletionSound)) {
                 CompletionSound = newCompletionSound;
             }
 
             DrawCompletionSoundEffect();
             DrawSoundEffect();
 
-            if (JobBarsCN.Config.GaugeReverseFill.Draw($"相反填充{id}", Name, ReverseFill, out var newReverseFill)) {
+            if (JobBarsCN.设置.GaugeReverseFill.Draw($"相反填充{id}", 名称, ReverseFill, out var newReverseFill)) {
                 ReverseFill = newReverseFill;
                 newVisual = true;
             }

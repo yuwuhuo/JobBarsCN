@@ -10,9 +10,9 @@ namespace JobBars.Gauges {
 
         public int Order => GetConfig().Order;
 
-        public int Height => UI?.GetHeight() ?? 0;
+        public int 高度 => UI?.GetHeight() ?? 0;
 
-        public int Width => UI?.GetWidth() ?? 0;
+        public int 宽度 => UI?.GetWidth() ?? 0;
 
         public int YOffset => UI?.GetYOffset() ?? 0;
 

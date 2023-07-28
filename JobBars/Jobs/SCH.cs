@@ -15,12 +15,12 @@ namespace JobBars.Jobs {
     public static class SCH {
         public static GaugeConfig[] Gauges => new GaugeConfig[] {
             new GaugeProcsConfig(UIHelper.Localize(BuffIds.Excog), GaugeVisualType.Diamond, new GaugeProcProps{
-                Procs = new []{
+                进程 = new []{
                     new ProcConfig(UIHelper.Localize(BuffIds.Excog), BuffIds.Excog, UIColor.BrightGreen)
                 },
-                ProcSound = GaugeCompleteSoundType.When_Empty
+                进程音效 = GaugeCompleteSoundType.When_Empty
             }),
-            new GaugeTimerConfig(UIHelper.Localize(BuffIds.Biolysis), GaugeVisualType.Bar, new GaugeSubTimerProps {
+            new GaugeTimerConfig(UIHelper.Localize(BuffIds.Biolysis), GaugeVisualType.条状, new GaugeSubTimerProps {
                 MaxDuration = 30,
                 Color = UIColor.BlueGreen,
                 Triggers = new []{
@@ -34,14 +34,14 @@ namespace JobBars.Jobs {
         public static BuffConfig[] Buffs => new[] {
             new BuffConfig(UIHelper.Localize(ActionIds.ChainStratagem), new BuffProps {
                 CD = 120,
-                Duration = 15,
-                Icon = ActionIds.ChainStratagem,
-                Color = UIColor.White,
-                Triggers = new []{ new Item(ActionIds.ChainStratagem) }
+                持续时间 = 15,
+                图标 = ActionIds.ChainStratagem,
+                颜色 = UIColor.White,
+                触发 = new []{ new Item(ActionIds.ChainStratagem) }
             })
         };
 
-        public static Cursor Cursors => new(JobIds.SCH, CursorType.None, CursorType.CastTime);
+        public static Cursor Cursors => new(JobIds.SCH, CursorType.无, CursorType.咏唱时间);
 
         public static CooldownConfig[] Cooldowns => new[] {
             new CooldownConfig(UIHelper.Localize(ActionIds.SummonSeraph), new CooldownProps {

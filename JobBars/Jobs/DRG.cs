@@ -32,7 +32,7 @@ namespace JobBars.Jobs {
                     new Item(BuffIds.RightEye2)
                 }
             }),
-            new GaugeTimerConfig(UIHelper.Localize(BuffIds.ChaoticSpring), GaugeVisualType.Bar, new GaugeSubTimerProps {
+            new GaugeTimerConfig(UIHelper.Localize(BuffIds.ChaoticSpring), GaugeVisualType.条状, new GaugeSubTimerProps {
                 MaxDuration = 24,
                 Color = UIColor.Purple,
                 Triggers = new [] {
@@ -45,17 +45,17 @@ namespace JobBars.Jobs {
                 SameColor = true,
                 Parts = new []{
                     new GaugesChargesPartProps {
-                        Diamond = true,
+                        棱形 = true,
                         MaxCharges = 2,
                         CD = 45,
-                        Triggers = new []{
+                        触发 = new []{
                             new Item(ActionIds.TrueNorth)
                         }
                     },
                     new GaugesChargesPartProps {
-                        Bar = true,
-                        Duration = 10,
-                        Triggers = new []{
+                        栏 = true,
+                        持续时间 = 10,
+                        触发 = new []{
                             new Item(BuffIds.TrueNorth)
                         }
                     }
@@ -67,28 +67,28 @@ namespace JobBars.Jobs {
         public static BuffConfig[] Buffs => new[] {
             new BuffConfig(UIHelper.Localize(ActionIds.DragonSight), new BuffProps {
                 CD = 120,
-                Duration = 20,
-                Icon = ActionIds.DragonSight,
-                Color = UIColor.Orange,
-                Triggers = new []{ new Item(ActionIds.DragonSight) }
+                持续时间 = 20,
+                图标 = ActionIds.DragonSight,
+                颜色 = UIColor.Orange,
+                触发 = new []{ new Item(ActionIds.DragonSight) }
             }),
             new BuffConfig(UIHelper.Localize(ActionIds.BattleLitany), new BuffProps {
                 CD = 120,
-                Duration = 15,
-                Icon = ActionIds.BattleLitany,
-                Color = UIColor.LightBlue,
-                Triggers = new []{ new Item(ActionIds.BattleLitany) }
+                持续时间 = 15,
+                图标 = ActionIds.BattleLitany,
+                颜色 = UIColor.LightBlue,
+                触发 = new []{ new Item(ActionIds.BattleLitany) }
             }),
             new BuffConfig(UIHelper.Localize(ActionIds.LanceCharge), new BuffProps {
                 CD = 60,
-                Duration = 20,
-                Icon = ActionIds.LanceCharge,
-                Color = UIColor.Red,
-                Triggers = new []{ new Item(ActionIds.LanceCharge) }
+                持续时间 = 20,
+                图标 = ActionIds.LanceCharge,
+                颜色 = UIColor.Red,
+                触发 = new []{ new Item(ActionIds.LanceCharge) }
             })
         };
 
-        public static Cursor Cursors => new(JobIds.DRG, CursorType.None, CursorType.GCD);
+        public static Cursor Cursors => new(JobIds.DRG, CursorType.无, CursorType.GCD);
 
         public static CooldownConfig[] Cooldowns => new[] {
             new CooldownConfig($"{UIHelper.Localize(ActionIds.Feint)} ({UIHelper.Localize(JobIds.DRG)})", new CooldownProps {

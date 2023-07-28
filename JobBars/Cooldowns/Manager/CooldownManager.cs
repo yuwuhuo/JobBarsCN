@@ -16,11 +16,11 @@ namespace JobBars.Cooldowns.Manager {
         private Dictionary<uint, CooldownPartyMember> ObjectIdToMember = new();
         private readonly Dictionary<JobIds, List<CooldownConfig>> CustomCooldowns = new();
 
-        public CooldownManager() : base("##职业_冷却时间") {
-            JobBarsCN.Builder.SetCooldownPosition(JobBarsCN.Config.CooldownPosition);
+        public CooldownManager() : base("##职业_技能监控") {
+            JobBarsCN.Builder.SetCooldownPosition(JobBarsCN.设置.CooldownPosition);
 
             // initialize custom cooldowns
-            foreach (var custom in JobBarsCN.Config.CustomCooldown) {
+            foreach (var custom in JobBarsCN.设置.CustomCooldown) {
                 if (!CustomCooldowns.ContainsKey(custom.Job)) CustomCooldowns[custom.Job] = new();
                 CustomCooldowns[custom.Job].Add(new CooldownConfig(custom.Name, custom.Props));
             }
@@ -34,7 +34,7 @@ namespace JobBars.Cooldowns.Manager {
         }
 
         public void PerformAction(Item action, uint objectId) {
-            if (!JobBarsCN.Config.CooldownsEnabled) return;
+            if (!JobBarsCN.设置.CooldownsEnabled) return;
 
             foreach (var member in ObjectIdToMember.Values) {
                 member.ProcessAction(action, objectId);
@@ -42,7 +42,7 @@ namespace JobBars.Cooldowns.Manager {
         }
 
         public void Tick() {
-            if (UIHelper.CalcDoHide(JobBarsCN.Config.CooldownsEnabled, JobBarsCN.Config.CooldownsHideOutOfCombat, JobBarsCN.Config.CooldownsHideWeaponSheathed)) {
+            if (UIHelper.CalcDoHide(JobBarsCN.设置.CooldownsEnabled, JobBarsCN.设置.CooldownsHideOutOfCombat, JobBarsCN.设置.CooldownsHideWeaponSheathed)) {
                 JobBarsCN.Builder.HideCooldowns();
                 return;
             }
@@ -68,7 +68,7 @@ namespace JobBars.Cooldowns.Manager {
                     continue;
                 }
 
-                if (!JobBarsCN.Config.CooldownsShowPartyMembers && partyMember.ObjectId != JobBarsCN.ClientState.LocalPlayer.ObjectId) {
+                if (!JobBarsCN.设置.CooldownsShowPartyMembers && partyMember.ObjectId != JobBarsCN.ClientState.LocalPlayer.ObjectId) {
                     JobBarsCN.Builder.SetCooldownRowVisible(idx, false);
                     continue;
                 }
@@ -88,8 +88,8 @@ namespace JobBars.Cooldowns.Manager {
         }
 
         public void UpdatePositionScale() {
-            JobBarsCN.Builder.SetCooldownPosition(JobBarsCN.Config.CooldownPosition + new Vector2(0, UIHelper.PartyListOffset()));
-            JobBarsCN.Builder.SetCooldownScale(JobBarsCN.Config.CooldownScale);
+            JobBarsCN.Builder.SetCooldownPosition(JobBarsCN.设置.CooldownPosition + new Vector2(0, UIHelper.PartyListOffset()));
+            JobBarsCN.Builder.SetCooldownScale(JobBarsCN.设置.CooldownScale);
             JobBarsCN.Builder.RefreshCooldownsLayout();
         }
 
@@ -102,12 +102,12 @@ namespace JobBars.Cooldowns.Manager {
         public void AddCustomCooldown(JobIds job, string name, CooldownProps props) {
             if (!CustomCooldowns.ContainsKey(job)) CustomCooldowns[job] = new();
             CustomCooldowns[job].Add(new CooldownConfig(name, props));
-            JobBarsCN.Config.AddCustomCooldown(name, job, props);
+            JobBarsCN.设置.AddCustomCooldown(name, job, props);
         }
 
         public void DeleteCustomCooldown(JobIds job, CooldownConfig custom) {
             CustomCooldowns[job].Remove(custom);
-            JobBarsCN.Config.RemoveCustomCooldown(custom.Name);
+            JobBarsCN.设置.RemoveCustomCooldown(custom.Name);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace JobBars.Data {
         public T Get(string name, T defaultValue) => Values.TryGetValue(name, out var val) ? val : defaultValue;
         public void Set(string name, T value) {
             Values[name] = value;
-            JobBarsCN.Config.Save();
+            JobBarsCN.设置.Save();
         }
 
         public bool Draw(string id, string name) => Draw(id, name, Default, out var _);
@@ -159,7 +159,7 @@ namespace JobBars.Data {
 
         public void Set(string name, ElementColor color) {
             Color[name] = color.Name;
-            JobBarsCN.Config.Save();
+            JobBarsCN.设置.Save();
         }
 
         public bool Draw(string id, string name, ElementColor defaultValue, out ElementColor value) {

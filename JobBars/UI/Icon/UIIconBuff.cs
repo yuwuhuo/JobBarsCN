@@ -57,8 +57,8 @@ namespace JobBars.UI {
         }
 
         public override void SetProgress(float current, float max) {
-            if (State != IconState.BuffRunning) {
-                State = IconState.BuffRunning;
+            if (State != IconState.Buff生效中) {
+                State = IconState.Buff生效中;
                 UIHelper.Hide(OriginalOverlay);
                 UIHelper.Show(BigText);
                 UIHelper.Show(Combo);
@@ -67,8 +67,8 @@ namespace JobBars.UI {
         }
 
         public override void SetDone() {
-            if (State == IconState.None) return;
-            State = IconState.None;
+            if (State == IconState.无) return;
+            State = IconState.无;
 
             UIHelper.Hide(BigText);
             UIHelper.Hide(Combo);
@@ -77,7 +77,7 @@ namespace JobBars.UI {
 
         public override void Tick(float dashPercent, bool border) {
             // avoid doubling up on borders if combo_or_active
-            var showBorder = CalcShowBorder(State == IconState.BuffRunning, false);
+            var showBorder = CalcShowBorder(State == IconState.Buff生效中, false);
             Combo->PartId = !showBorder ? (ushort)0 : (ushort)(6 + dashPercent * 7);
             UIHelper.SetVisibility(Combo, showBorder);
         }
@@ -101,7 +101,7 @@ namespace JobBars.UI {
         }
 
         public override void RefreshVisuals() {
-            if (JobBarsCN.Config.IconBuffLarge) {
+            if (JobBarsCN.设置.IconBuffLarge) {
                 BigText->AtkResNode.X = 2;
                 BigText->AtkResNode.Y = 7;
                 SetTextLarge(BigText);

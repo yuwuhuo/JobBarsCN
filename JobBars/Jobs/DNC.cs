@@ -14,7 +14,7 @@ namespace JobBars.Jobs {
     public static class DNC {
         public static GaugeConfig[] Gauges => new GaugeConfig[] {
             new GaugeProcsConfig($"{UIHelper.Localize(JobIds.DNC)} {UIHelper.ProcText}", GaugeVisualType.Diamond, new GaugeProcProps{
-                Procs = new []{
+                进程 = new []{
                     new ProcConfig(UIHelper.Localize(BuffIds.FlourishingSymmetry),
                         new[] { new Item(BuffIds.FlourishingSymmetry), new Item(BuffIds.SilkenSymmetry) },
                         UIColor.BrightGreen),
@@ -31,21 +31,21 @@ namespace JobBars.Jobs {
         public static BuffConfig[] Buffs => new[] {
             new BuffConfig(UIHelper.Localize(ActionIds.QuadTechFinish), new BuffProps {
                 CD = 115, // -5 seconds for the dance to actually be cast
-                Duration = 20,
-                Icon = ActionIds.QuadTechFinish,
-                Color = UIColor.Orange,
-                Triggers = new []{ new Item(ActionIds.QuadTechFinish) }
+                持续时间 = 20,
+                图标 = ActionIds.QuadTechFinish,
+                颜色 = UIColor.Orange,
+                触发 = new []{ new Item(ActionIds.QuadTechFinish) }
             }),
             new BuffConfig(UIHelper.Localize(ActionIds.Devilment), new BuffProps {
                 CD = 120,
-                Duration = 20,
-                Icon = ActionIds.Devilment,
-                Color = UIColor.BrightGreen,
-                Triggers = new []{ new Item(ActionIds.Devilment) }
+                持续时间 = 20,
+                图标 = ActionIds.Devilment,
+                颜色 = UIColor.BrightGreen,
+                触发 = new []{ new Item(ActionIds.Devilment) }
             })
         };
 
-        public static Cursor Cursors => new(JobIds.DNC, CursorType.None, CursorType.GCD);
+        public static Cursor Cursors => new(JobIds.DNC, CursorType.无, CursorType.GCD);
 
         public static CooldownConfig[] Cooldowns => new[] {
             new CooldownConfig(UIHelper.Localize(ActionIds.ShieldSamba), new CooldownProps {

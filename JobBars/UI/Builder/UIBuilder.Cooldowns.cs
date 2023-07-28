@@ -34,7 +34,7 @@ namespace JobBars.UI {
 
         public void RefreshCooldownsLayout() {
             for (int i = 0; i < Cooldowns.Count; i++) {
-                UIHelper.SetPosition(Cooldowns[i].RootRes, 0, JobBarsCN.Config.CooldownsSpacing * i);
+                UIHelper.SetPosition(Cooldowns[i].RootRes, 0, JobBarsCN.设置.CooldownsSpacing * i);
             }
         }
 

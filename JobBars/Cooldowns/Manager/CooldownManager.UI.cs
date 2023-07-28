@@ -8,43 +8,43 @@ namespace JobBars.Cooldowns.Manager {
         private readonly InfoBox<CooldownManager> PositionInfoBox = new() {
             Label = "坐标",
             ContentsAction = (CooldownManager manager) => {
-                if (ImGui.Checkbox("Left-aligned" + manager.Id, ref JobBarsCN.Config.CooldownsLeftAligned)) {
-                    JobBarsCN.Config.Save();
+                if (ImGui.Checkbox("左对齐" + manager.Id, ref JobBarsCN.设置.CooldownsLeftAligned)) {
+                    JobBarsCN.设置.Save();
                     manager.ResetUi();
                 }
 
-                if (ImGui.InputFloat("Scale" + manager.Id, ref JobBarsCN.Config.CooldownScale)) {
+                if (ImGui.InputFloat("尺寸" + manager.Id, ref JobBarsCN.设置.CooldownScale)) {
                     manager.UpdatePositionScale();
-                    JobBarsCN.Config.Save();
+                    JobBarsCN.设置.Save();
                 }
 
-                if (ImGui.InputFloat2("坐标" + manager.Id, ref JobBarsCN.Config.CooldownPosition)) {
+                if (ImGui.InputFloat2("坐标" + manager.Id, ref JobBarsCN.设置.CooldownPosition)) {
                     manager.UpdatePositionScale();
-                    JobBarsCN.Config.Save();
+                    JobBarsCN.设置.Save();
                 }
 
-                if (ImGui.InputFloat("Line height" + manager.Id, ref JobBarsCN.Config.CooldownsSpacing)) {
+                if (ImGui.InputFloat("行距" + manager.Id, ref JobBarsCN.设置.CooldownsSpacing)) {
                     manager.UpdatePositionScale();
-                    JobBarsCN.Config.Save();
+                    JobBarsCN.设置.Save();
                 }
             }
         };
 
         private readonly InfoBox<CooldownManager> ShowIconInfoBox = new() {
-            Label = "Show Icons When",
+            Label = "显示场景（最好全勾）",
             ContentsAction = (CooldownManager manager) => {
-                if (ImGui.Checkbox("Default" + manager.Id, ref JobBarsCN.Config.CooldownsStateShowDefault)) JobBarsCN.Config.Save();
-                if (ImGui.Checkbox("Active" + manager.Id, ref JobBarsCN.Config.CooldownsStateShowRunning)) JobBarsCN.Config.Save();
-                if (ImGui.Checkbox("On cooldown" + manager.Id, ref JobBarsCN.Config.CooldownsStateShowOnCD)) JobBarsCN.Config.Save();
-                if (ImGui.Checkbox("Off cooldown" + manager.Id, ref JobBarsCN.Config.CooldownsStateShowOffCD)) JobBarsCN.Config.Save();
+                if (ImGui.Checkbox("默认" + manager.Id, ref JobBarsCN.设置.CooldownsStateShowDefault)) JobBarsCN.设置.Save();
+                if (ImGui.Checkbox("生效中" + manager.Id, ref JobBarsCN.设置.CooldownsStateShowRunning)) JobBarsCN.设置.Save();
+                if (ImGui.Checkbox("冷却中" + manager.Id, ref JobBarsCN.设置.CooldownsStateShowOnCD)) JobBarsCN.设置.Save();
+                if (ImGui.Checkbox("可发动" + manager.Id, ref JobBarsCN.设置.CooldownsStateShowOffCD)) JobBarsCN.设置.Save();
             }
         };
 
         private readonly InfoBox<CooldownManager> HideWhenInfoBox = new() {
-            Label = "Hide When",
+            Label = "以下情况隐藏",
             ContentsAction = (CooldownManager manager) => {
-                if (ImGui.Checkbox("Out of combat", ref JobBarsCN.Config.CooldownsHideOutOfCombat)) JobBarsCN.Config.Save();
-                if (ImGui.Checkbox("Weapon sheathed", ref JobBarsCN.Config.CooldownsHideWeaponSheathed)) JobBarsCN.Config.Save();
+                if (ImGui.Checkbox("脱离战斗状态", ref JobBarsCN.设置.CooldownsHideOutOfCombat)) JobBarsCN.设置.Save();
+                if (ImGui.Checkbox("武器收起状态", ref JobBarsCN.设置.CooldownsHideWeaponSheathed)) JobBarsCN.设置.Save();
             }
         };
 
@@ -53,8 +53,8 @@ namespace JobBars.Cooldowns.Manager {
         protected override void DrawHeader() {
             CustomCooldownDialog.Draw();
 
-            if (ImGui.Checkbox("Cooldowns enabled" + Id, ref JobBarsCN.Config.CooldownsEnabled)) {
-                JobBarsCN.Config.Save();
+            if (ImGui.Checkbox("启用技能监控" + Id, ref JobBarsCN.设置.CooldownsEnabled)) {
+                JobBarsCN.设置.Save();
                 ResetUi();
             }
         }
@@ -64,15 +64,15 @@ namespace JobBars.Cooldowns.Manager {
             ShowIconInfoBox.Draw(this);
             HideWhenInfoBox.Draw(this);
 
-            if (ImGui.Checkbox("Hide active buff text" + Id, ref JobBarsCN.Config.CooldownsHideActiveBuffDuration)) JobBarsCN.Config.Save();
+            if (ImGui.Checkbox("隐藏滚动黄边" + Id, ref JobBarsCN.设置.CooldownsHideActiveBuffDuration)) JobBarsCN.设置.Save();
 
-            if (ImGui.Checkbox("Show party members' cooldowns" + Id, ref JobBarsCN.Config.CooldownsShowPartyMembers)) {
-                JobBarsCN.Config.Save();
+            if (ImGui.Checkbox("显示队友的技能监控" + Id, ref JobBarsCN.设置.CooldownsShowPartyMembers)) {
+                JobBarsCN.设置.Save();
                 ResetUi();
             }
 
             ImGui.SetNextItemWidth(50f);
-            if (ImGui.InputFloat("Opacity when on cooldown" + Id, ref JobBarsCN.Config.CooldownsOnCDOpacity)) JobBarsCN.Config.Save();
+            if (ImGui.InputFloat("技能冷却时监控透明度" + Id, ref JobBarsCN.设置.CooldownsOnCDOpacity)) JobBarsCN.设置.Save();
         }
 
         protected override void DrawItem(CooldownConfig[] item, JobIds job) {
@@ -91,7 +91,7 @@ namespace JobBars.Cooldowns.Manager {
             }
 
             ImGui.SetCursorPosY(ImGui.GetCursorPosY() + 10);
-            if (ImGui.Button($"+ Add Custom Cooldown{Id}")) CustomCooldownDialog.Show(job);
+            if (ImGui.Button($"添加自定义技能监控{Id}")) CustomCooldownDialog.Show(job);
 
             if (reset) ResetUi();
         }

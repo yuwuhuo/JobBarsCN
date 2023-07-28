@@ -15,13 +15,13 @@ namespace JobBars.Jobs {
     public static class BLU {
         public static GaugeConfig[] Gauges => new GaugeConfig[] {
             new GaugeProcsConfig($"{UIHelper.Localize(JobIds.BLU)} {UIHelper.ProcText}", GaugeVisualType.Diamond, new GaugeProcProps{
-                Procs = new []{
+                进程 = new []{
                     new ProcConfig(UIHelper.Localize(BuffIds.AstralAttenuation), BuffIds.AstralAttenuation, UIColor.NoColor),
                     new ProcConfig(UIHelper.Localize(BuffIds.UmbralAttenuation), BuffIds.UmbralAttenuation, UIColor.DarkBlue),
                     new ProcConfig(UIHelper.Localize(BuffIds.PhysicalAttenuation), BuffIds.PhysicalAttenuation, UIColor.Orange)
                 }
             }),
-            new GaugeTimerConfig(UIHelper.Localize(BuffIds.BluBleed), GaugeVisualType.Bar, new GaugeSubTimerProps
+            new GaugeTimerConfig(UIHelper.Localize(BuffIds.BluBleed), GaugeVisualType.条状, new GaugeSubTimerProps
             {
                 MaxDuration = 60,
                 Color = UIColor.Red,
@@ -29,7 +29,7 @@ namespace JobBars.Jobs {
                     new Item(BuffIds.BluBleed)
                 }
             }),
-            new GaugeTimerConfig(UIHelper.Localize(BuffIds.Poison), GaugeVisualType.Bar, new GaugeSubTimerProps
+            new GaugeTimerConfig(UIHelper.Localize(BuffIds.Poison), GaugeVisualType.条状, new GaugeSubTimerProps
             {
                 MaxDuration = 15,
                 Color = UIColor.HealthGreen,
@@ -42,21 +42,21 @@ namespace JobBars.Jobs {
         public static BuffConfig[] Buffs => new[] {
             new BuffConfig(UIHelper.Localize(ActionIds.OffGuard), new BuffProps {
                 CD = 60,
-                Duration = 15,
-                Icon = ActionIds.OffGuard,
-                Color = UIColor.BrightGreen,
-                Triggers = new []{ new Item(ActionIds.OffGuard) }
+                持续时间 = 15,
+                图标 = ActionIds.OffGuard,
+                颜色 = UIColor.BrightGreen,
+                触发 = new []{ new Item(ActionIds.OffGuard) }
             }),
             new BuffConfig(UIHelper.Localize(ActionIds.PeculiarLight), new BuffProps {
                 CD = 60,
-                Duration = 15,
-                Icon = ActionIds.PeculiarLight,
-                Color = UIColor.Red,
-                Triggers = new []{ new Item(ActionIds.PeculiarLight) }
+                持续时间 = 15,
+                图标 = ActionIds.PeculiarLight,
+                颜色 = UIColor.Red,
+                触发 = new []{ new Item(ActionIds.PeculiarLight) }
             })
         };
 
-        public static Cursor Cursors => new(JobIds.BLU, CursorType.None, CursorType.CastTime);
+        public static Cursor Cursors => new(JobIds.BLU, CursorType.无, CursorType.咏唱时间);
 
         public static CooldownConfig[] Cooldowns => new[] {
             new CooldownConfig($"{UIHelper.Localize(ActionIds.Addle)} ({UIHelper.Localize(JobIds.BLU)})", new CooldownProps {

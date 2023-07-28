@@ -17,25 +17,25 @@ namespace JobBars {
         private readonly InfoBox<JobBarsCN> RequiresRestartInfoBox = new() {
             Label = "重启游戏起效",
             ContentsAction = (JobBarsCN item) => {
-                if (ImGui.Checkbox("使用 4K 纹理##职业_Settings", ref Config.Use4K)) {
-                    Config.Save();
+                if (ImGui.Checkbox("使用4K贴图##职业_设置", ref 设置.Use4K)) {
+                    设置.Save();
                 }
 
                 ImGui.SetNextItemWidth(200f);
-                if (DrawCombo(ValidAttachTypes, Config.AttachAddon, "量谱/Buff计时/光标 UI 元素", "##职业_设置", out var newAttach)) {
-                    Config.AttachAddon = newAttach;
-                    Config.Save();
+                if (DrawCombo(ValidAttachTypes, 设置.AttachAddon, "量谱/Buff计时/光标UI参考系", "##职业_设置", out var newAttach)) {
+                    设置.AttachAddon = newAttach;
+                    设置.Save();
                 }
 
                 ImGui.SetNextItemWidth(200f);
-                if (DrawCombo(ValidAttachTypes, Config.CooldownAttachAddon, "冷却 UI 元素", "##职业_设置", out var newCDAttach)) {
-                    Config.CooldownAttachAddon = newCDAttach;
-                    Config.Save();
+                if (DrawCombo(ValidAttachTypes, 设置.CooldownAttachAddon, "技能监控UI参考系", "##职业_设置", out var newCDAttach)) {
+                    设置.CooldownAttachAddon = newCDAttach;
+                    设置.Save();
                 }
             }
         };
 
-        private static readonly string Text = "选择 UI 元素不洽合于隐藏它们的插件（例如 Chatbox 的 Chat2、PartyList的 Delv UI）。另外，在选择量谱作为小队列表元素时，请确保在“角色设置（K）”>“界面设置”>“小队列表”中关闭“单人时隐藏队伍列表”。";
+        private static readonly string Text = "选择UI参考系不适用于同时开启隐藏它们的插件（例如 Chatbox 的 Chat2、PartyList的 Delv UI）。另外，选择小队列表作为参考系时，请确保在“角色设置（K）”>“界面设置”>“小队列表”中关闭“单人时隐藏队伍列表”。";
 
         protected static void DisplayWarning() {
             ImGui.PushStyleColor(ImGuiCol.Border, new Vector4(1, 0, 0, 0.3f));
@@ -87,7 +87,7 @@ namespace JobBars {
                     ImGui.EndTabItem();
                 }
 
-                if (ImGui.BeginTabItem("冷却时间" + _ID)) {
+                if (ImGui.BeginTabItem("技能监控" + _ID)) {
                     CooldownManager?.Draw();
                     ImGui.EndTabItem();
                 }

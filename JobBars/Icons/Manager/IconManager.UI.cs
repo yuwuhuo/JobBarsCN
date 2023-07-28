@@ -6,21 +6,21 @@ namespace JobBars.Icons.Manager {
         private readonly InfoBox<IconManager> LargeIconInfoBox = new() {
             Label = "放大",
             ContentsAction = (IconManager manager) => {
-                if (ImGui.Checkbox("Buff图标" + manager.Id, ref JobBarsCN.Config.IconBuffLarge)) {
+                if (ImGui.Checkbox("Buff图标" + manager.Id, ref JobBarsCN.设置.IconBuffLarge)) {
                     JobBarsCN.IconBuilder.RefreshVisuals();
-                    JobBarsCN.Config.Save();
+                    JobBarsCN.设置.Save();
                 }
 
-                if (ImGui.Checkbox("倒计时图标" + manager.Id, ref JobBarsCN.Config.IconTimerLarge)) {
+                if (ImGui.Checkbox("倒计时图标" + manager.Id, ref JobBarsCN.设置.IconTimerLarge)) {
                     JobBarsCN.IconBuilder.RefreshVisuals();
-                    JobBarsCN.Config.Save();
+                    JobBarsCN.设置.Save();
                 }
             }
         };
 
         protected override void DrawHeader() {
-            if (ImGui.Checkbox("启用图标替换", ref JobBarsCN.Config.IconsEnabled)) {
-                JobBarsCN.Config.Save();
+            if (ImGui.Checkbox("启用图标替换", ref JobBarsCN.设置.IconsEnabled)) {
+                JobBarsCN.设置.Save();
                 Reset();
             }
         }

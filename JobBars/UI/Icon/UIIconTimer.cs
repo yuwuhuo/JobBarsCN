@@ -100,8 +100,8 @@ namespace JobBars.UI {
         }
 
         public override void SetProgress(float current, float max) {
-            if (State == IconState.TimerDone && current <= 0) return;
-            State = IconState.TimerRunning;
+            if (State == IconState.计时结束 && current <= 0) return;
+            State = IconState.倒计时中;
 
             UIHelper.Show(Text);
             Text->SetText(((int)Math.Round(current)).ToString());
@@ -116,7 +116,7 @@ namespace JobBars.UI {
         }
 
         public override void SetDone() {
-            State = IconState.TimerDone;
+            State = IconState.计时结束;
             UIHelper.Hide(Text);
 
             UIHelper.Hide(Ring);
@@ -141,7 +141,7 @@ namespace JobBars.UI {
         }
 
         public override void Tick(float dashPercent, bool border) {
-            var showBorder = CalcShowBorder(State == IconState.TimerDone, border);
+            var showBorder = CalcShowBorder(State == IconState.计时结束, border);
             Combo->PartId = !showBorder ? (ushort)0 : (ushort)(6 + dashPercent * 7);
         }
 
@@ -189,7 +189,7 @@ namespace JobBars.UI {
         }
 
         public override void RefreshVisuals() {
-            if (JobBarsCN.Config.IconTimerLarge) {
+            if (JobBarsCN.设置.IconTimerLarge) {
                 Text->AtkResNode.X = 5;
                 Text->AtkResNode.Y = 7;
                 SetTextLarge(Text);

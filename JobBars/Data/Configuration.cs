@@ -48,16 +48,16 @@ namespace JobBars.Data {
         // ====== GAUGES ======
 
         public float GaugeScale = 1.0f;
-        public bool GaugeHorizontal = false;
+        public bool 横向量谱 = false;
         public bool GaugeAlignRight = false;
-        public bool GaugeBottomToTop = false;
+        public bool 量谱从下到上 = false;
 
         public bool GaugesEnabled = true;
         public bool GaugesHideOutOfCombat = false;
         public bool GaugesHideWeaponSheathed = false;
         public bool GaugeGCDTextVisible = true;
 
-        public GaugePositionType GaugePositionType = GaugePositionType.Global;
+        public GaugePositionType 量谱位置类型 = GaugePositionType.Global;
         public Vector2 GaugePositionGlobal = new(200, 200); // global
         public VectorValueConfig GaugePerJobPosition = new(new Vector2(200, 200)); // per job
         public VectorValueConfig GaugeSplitPosition = new(new Vector2(200, 200)); // split
@@ -66,22 +66,22 @@ namespace JobBars.Data {
         public BoolValueConfig GaugeEnabled = new(true);
         public IntValueConfig GaugeOrder = new(-1);
         public BoolValueConfig GaugeVertical = new(false);
-        public IntValueConfig GaugeProcOrder = new(-1);
-        public ColorConfig GaugeProcColor = new();
+        public IntValueConfig 量谱进程顺序 = new(-1);
+        public ColorConfig 量谱进程颜色 = new();
         public BoolValueConfig GaugeHideInactive = new(false);
         public BoolValueConfig GaugeInvert = new(false);
         public BoolValueConfig GaugeShowSegments = new(true);
         public BoolValueConfig GaugeReverseFill = new(false);
-        public ColorConfig GaugeColor = new();
+        public ColorConfig 量谱颜色 = new();
         public ComboValueConfig<GaugeVisualType> GaugeType = new();
-        public BoolValueConfig GaugeShowText = new(true);
+        public BoolValueConfig 量谱显示文本 = new(true);
         public BoolValueConfig GaugeSwapText = new(false);
         public FloatValueConfig GaugeTimerOffset = new(0f);
         public ComboValueConfig<GaugeGCDRollingType> GaugeGCDRolling = new();
         public float GaugeSlidecastTime = 0.5f;
         public IntValueConfig GaugeMaxGcds = new(1);
 
-        public ComboValueConfig<GaugeCompleteSoundType> GaugeCompletionSound = new(); // GCD, stacks, charges
+        public ComboValueConfig<GaugeCompleteSoundType> 量谱填满音效 = new(); // GCD, stacks, charges
         public FloatValueConfig GaugeLowTimerWarning_2 = new(4.0f);
         public IntValueConfig GaugeSoundEffect_2 = new(0);
         public IntValueConfig GaugeCompletionSoundEffect_2 = new(78);
@@ -104,8 +104,8 @@ namespace JobBars.Data {
         public bool BuffSquare = false;
         public float BuffOnCDOpacity = 1.0f;
 
-        public BoolValueConfig BuffEnabled = new(true);
-        public BoolValueConfig BuffPartyListHighlight = new(true);
+        public BoolValueConfig 启用Buff = new(true);
+        public BoolValueConfig 小队列表Buff高亮 = new(true);
 
         public int BuffHorizontal = 5;
         public bool BuffRightToLeft = false;
@@ -149,7 +149,7 @@ namespace JobBars.Data {
         public Vector2 CursorCustomPosition = new(200, 200);
         public float CursorInnerScale = 1.5f;
         public float CursorOuterScale = 1.2f;
-        public string CursorInnerColor = UIColor.MpPink.Name;
+        public string CursorInnerColor = UIColor.法条色.Name;
         public string CursorOuterColor = UIColor.HealthGreen.Name;
 
         public ComboValueConfig<CursorType> CursorType = new();

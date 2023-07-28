@@ -41,16 +41,16 @@ namespace JobBars.Gauges.Timer {
                 NoRefresh = props.NoRefresh;
                 Triggers = props.Triggers;
                 HideLowWarning = props.HideLowWarning;
-                Color = JobBarsCN.Config.GaugeColor.Get(Name, props.Color);
-                Invert = JobBarsCN.Config.GaugeInvert.Get(Name, props.Invert);
-                Offset = JobBarsCN.Config.GaugeTimerOffset.Get(Name);
-                LowWarningTime = JobBarsCN.Config.GaugeLowTimerWarning_2.Get(Name);
+                Color = JobBarsCN.设置.量谱颜色.Get(Name, props.Color);
+                Invert = JobBarsCN.设置.GaugeInvert.Get(Name, props.Invert);
+                Offset = JobBarsCN.设置.GaugeTimerOffset.Get(Name);
+                LowWarningTime = JobBarsCN.设置.GaugeLowTimerWarning_2.Get(Name);
             }
         }
 
         // ===============================
 
-        private static readonly GaugeVisualType[] ValidGaugeVisualType = new[] { GaugeVisualType.Bar, GaugeVisualType.Diamond };
+        private static readonly GaugeVisualType[] ValidGaugeVisualType = new[] { GaugeVisualType.条状, GaugeVisualType.Diamond };
         protected override GaugeVisualType[] GetValidGaugeTypes() => ValidGaugeVisualType;
 
         public GaugeSubTimerConfig[] SubTimers { get; private set; }
@@ -62,7 +62,7 @@ namespace JobBars.Gauges.Timer {
         public GaugeTimerConfig(string name, GaugeVisualType type, GaugeTimerProps props) : base(name, type) {
             SubTimers = new GaugeSubTimerConfig[props.SubTimers.Length];
             for (int i = 0; i < SubTimers.Length; i++) {
-                var id = string.IsNullOrEmpty(props.SubTimers[i].SubName) ? Name : Name + "/" + props.SubTimers[i].SubName;
+                var id = string.IsNullOrEmpty(props.SubTimers[i].SubName) ? 名称 : 名称 + "/" + props.SubTimers[i].SubName;
                 SubTimers[i] = new GaugeSubTimerConfig(id, props.SubTimers[i]);
             }
         }
@@ -77,20 +77,20 @@ namespace JobBars.Gauges.Timer {
 
                 var suffix = string.IsNullOrEmpty(subTimer.SubName) ? "" : $" ({subTimer.SubName})";
 
-                if (JobBarsCN.Config.GaugeColor.Draw($"颜色{suffix}{id}", subTimer.Name, subTimer.Color, out var newColor)) {
+                if (JobBarsCN.设置.量谱颜色.Draw($"颜色{suffix}{id}", subTimer.Name, subTimer.Color, out var newColor)) {
                     subTimer.Color = newColor;
                     newVisual = true;
                 }
 
-                if (JobBarsCN.Config.GaugeTimerOffset.Draw($"提示时间{suffix}{id}", subTimer.Name, subTimer.Offset, out var newOffset)) {
+                if (JobBarsCN.设置.GaugeTimerOffset.Draw($"提示时间{suffix}{id}", subTimer.Name, subTimer.Offset, out var newOffset)) {
                     subTimer.Offset = newOffset;
                 }
 
-                if (JobBarsCN.Config.GaugeInvert.Draw($"相反走向{suffix}{id}", subTimer.Name, subTimer.Invert, out var newInvert)) {
+                if (JobBarsCN.设置.GaugeInvert.Draw($"相反填充{suffix}{id}", subTimer.Name, subTimer.Invert, out var newInvert)) {
                     subTimer.Invert = newInvert;
                 }
 
-                if (JobBarsCN.Config.GaugeLowTimerWarning_2.Draw($"警告时间{suffix}{id}", subTimer.Name, subTimer.LowWarningTime, out var newLowWarning)) {
+                if (JobBarsCN.设置.GaugeLowTimerWarning_2.Draw($"警告时间{suffix}{id}", subTimer.Name, subTimer.LowWarningTime, out var newLowWarning)) {
                     subTimer.LowWarningTime = newLowWarning;
                 }
             }

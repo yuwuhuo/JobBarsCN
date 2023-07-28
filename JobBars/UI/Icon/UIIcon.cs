@@ -6,11 +6,11 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace JobBars.UI {
     public enum UIIconComboType {
-        Combo_Or_Active,
-        Combo_And_Active,
-        Only_When_Combo,
-        Only_When_Active,
-        Never
+        战斗或生效中,
+        战斗且生效中,
+        仅战斗中,
+        仅生效中,
+        从不
     }
 
     public struct UIIconProps {
@@ -21,10 +21,10 @@ namespace JobBars.UI {
 
     public unsafe abstract class UIIcon {
         protected enum IconState {
-            None,
-            TimerRunning,
-            TimerDone,
-            BuffRunning
+            无,
+            倒计时中,
+            计时结束,
+            Buff生效中
         }
 
         public readonly uint AdjustedId;
@@ -37,7 +37,7 @@ namespace JobBars.UI {
         protected readonly UIIconComboType ComboType;
         protected readonly bool ShowRing;
 
-        protected IconState State = IconState.None;
+        protected IconState State = IconState.无;
 
         private bool Disposed = false;
 
@@ -64,11 +64,11 @@ namespace JobBars.UI {
         public abstract void OnDispose();
 
         protected bool CalcShowBorder(bool active, bool border) => ComboType switch {
-            UIIconComboType.Only_When_Combo => border,
-            UIIconComboType.Only_When_Active => active,
-            UIIconComboType.Combo_Or_Active => border || active,
-            UIIconComboType.Combo_And_Active => border && active,
-            UIIconComboType.Never => false,
+            UIIconComboType.仅战斗中 => border,
+            UIIconComboType.仅生效中 => active,
+            UIIconComboType.战斗或生效中 => border || active,
+            UIIconComboType.战斗且生效中 => border && active,
+            UIIconComboType.从不 => false,
             _ => false
         };
 

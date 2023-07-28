@@ -21,8 +21,8 @@ namespace JobBars.Gauges.Charges {
 
         public GaugeChargesTracker(GaugeChargesConfig config, int idx) {
             Config = config;
-            TotalCharges = Config.Parts.Where(p => p.Diamond).Select(d => d.MaxCharges).Sum();
-            IsCDBar = Config.Parts.Where(p => p.Bar).All(p => p.Triggers.All(t => t.Type != ItemType.Buff));
+            TotalCharges = Config.Parts.Where(p => p.棱形).Select(d => d.MaxCharges).Sum();
+            IsCDBar = Config.Parts.Where(p => p.栏).All(p => p.触发.All(t => t.Type != ItemType.Buff));
             LoadUI(Config.TypeConfig switch {
                 GaugeBarConfig _ => new GaugeBar<GaugeChargesTracker>(this, idx),
                 GaugeDiamondConfig _ => new GaugeDiamond<GaugeChargesTracker>(this, idx),
@@ -44,17 +44,17 @@ namespace JobBars.Gauges.Charges {
 
             foreach (var part in Config.Parts) {
                 var diamondFound = false;
-                foreach (var trigger in part.Triggers) {
+                foreach (var trigger in part.触发) {
                     if (trigger.Type == ItemType.Buff) {
                         var buffExists = UIHelper.PlayerStatus.TryGetValue(trigger, out var buff);
                         var buffValue = buffExists ? buff.StackCount : 0;
 
-                        if (part.Bar && !barAssigned && buffExists) {
+                        if (part.栏 && !barAssigned && buffExists) {
                             barAssigned = true;
-                            BarPercentValue = buff.RemainingTime / part.Duration;
+                            BarPercentValue = buff.RemainingTime / part.持续时间;
                             BarTextValue = buff.RemainingTime;
                         }
-                        if (part.Diamond) {
+                        if (part.棱形) {
                             currentChargesValue += buffValue;
                             AddToActive(buffValue, part.MaxCharges);
                         }
@@ -67,7 +67,7 @@ namespace JobBars.Gauges.Charges {
                         var recastActive = UIHelper.GetRecastActive(trigger.Id, out var timeElapsed);
                         var actionValue = recastActive ? (int)Math.Floor(timeElapsed / part.CD) : part.MaxCharges;
 
-                        if (part.Bar && !barAssigned && recastActive) {
+                        if (part.栏 && !barAssigned && recastActive) {
                             barAssigned = true;
                             var currentTime = timeElapsed % part.CD;
                             var timeLeft = part.CD - currentTime;
@@ -75,7 +75,7 @@ namespace JobBars.Gauges.Charges {
                             BarPercentValue = currentTime / part.CD;
                             BarTextValue = timeLeft;
                         }
-                        if (part.Diamond) {
+                        if (part.棱形) {
                             currentChargesValue += actionValue;
                             AddToActive(actionValue, part.MaxCharges);
                         }
@@ -141,7 +141,7 @@ namespace JobBars.Gauges.Charges {
             if (Config.SameColor) return Config.BarColor;
 
             var startIdx = 0;
-            foreach (var part in Config.Parts.Where(x => x.Diamond)) {
+            foreach (var part in Config.Parts.Where(x => x.棱形)) {
                 var endIdx = startIdx + part.MaxCharges;
                 if (idx < endIdx) return part.Color;
                 startIdx = endIdx;

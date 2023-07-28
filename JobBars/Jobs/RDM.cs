@@ -16,7 +16,7 @@ namespace JobBars.Jobs {
     public static class RDM {
         public static GaugeConfig[] Gauges => new GaugeConfig[] {
             new GaugeProcsConfig($"{UIHelper.Localize(JobIds.RDM)} {UIHelper.ProcText}", GaugeVisualType.Diamond, new GaugeProcProps{
-                Procs = new []{
+                进程 = new []{
                     new ProcConfig(UIHelper.Localize(BuffIds.VerstoneReady), BuffIds.VerstoneReady, UIColor.NoColor),
                     new ProcConfig(UIHelper.Localize(BuffIds.VerfireReady), BuffIds.VerfireReady, UIColor.Red)
                 }
@@ -33,21 +33,21 @@ namespace JobBars.Jobs {
         public static BuffConfig[] Buffs => new[] {
             new BuffConfig(UIHelper.Localize(ActionIds.Manafication), new BuffProps {
                 CD = 110,
-                Duration = 15,
-                Icon = ActionIds.Manafication,
-                Color = UIColor.DarkBlue,
-                Triggers = new []{ new Item(ActionIds.Manafication) }
+                持续时间 = 15,
+                图标 = ActionIds.Manafication,
+                颜色 = UIColor.DarkBlue,
+                触发 = new []{ new Item(ActionIds.Manafication) }
             }),
             new BuffConfig(UIHelper.Localize(ActionIds.Embolden), new BuffProps {
                 CD = 120,
-                Duration = 20,
-                Icon = ActionIds.Embolden,
-                Color = UIColor.White,
-                Triggers = new []{ new Item(ActionIds.Embolden) }
+                持续时间 = 20,
+                图标 = ActionIds.Embolden,
+                颜色 = UIColor.White,
+                触发 = new []{ new Item(ActionIds.Embolden) }
             })
         };
 
-        public static Cursor Cursors => new(JobIds.RDM, CursorType.None, CursorType.CastTime);
+        public static Cursor Cursors => new(JobIds.RDM, CursorType.无, CursorType.咏唱时间);
 
         public static CooldownConfig[] Cooldowns => new[] {
             new CooldownConfig($"{UIHelper.Localize(ActionIds.Addle)} ({UIHelper.Localize(JobIds.RDM)})", new CooldownProps {

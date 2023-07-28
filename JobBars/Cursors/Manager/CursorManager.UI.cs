@@ -9,45 +9,45 @@ namespace JobBars.Cursors.Manager {
         private readonly InfoBox<CursorManager> HideWhenInfoBox = new() {
             Label = "隐藏",
             ContentsAction = (CursorManager manager) => {
-                if (ImGui.Checkbox("鼠标隐藏", ref JobBarsCN.Config.CursorHideWhenHeld)) JobBarsCN.Config.Save();
-                if (ImGui.Checkbox("脱离战斗状态", ref JobBarsCN.Config.CursorHideOutOfCombat)) JobBarsCN.Config.Save();
-                if (ImGui.Checkbox("武器收回状态", ref JobBarsCN.Config.CursorHideWeaponSheathed)) JobBarsCN.Config.Save();
+                if (ImGui.Checkbox("鼠标隐藏", ref JobBarsCN.设置.CursorHideWhenHeld)) JobBarsCN.设置.Save();
+                if (ImGui.Checkbox("脱离战斗状态", ref JobBarsCN.设置.CursorHideOutOfCombat)) JobBarsCN.设置.Save();
+                if (ImGui.Checkbox("武器收回状态", ref JobBarsCN.设置.CursorHideWeaponSheathed)) JobBarsCN.设置.Save();
             }
         };
 
         protected override void DrawHeader() {
-            if (ImGui.Checkbox("光标启用" + Id, ref JobBarsCN.Config.CursorsEnabled)) JobBarsCN.Config.Save();
+            if (ImGui.Checkbox("光标启用" + Id, ref JobBarsCN.设置.CursorsEnabled)) JobBarsCN.设置.Save();
         }
 
         protected override void DrawSettings() {
             HideWhenInfoBox.Draw(this);
 
-            if (JobBarsCN.DrawCombo(ValidCursorPositionType, JobBarsCN.Config.CursorPosition, "光标坐标", Id, out var newPosition)) {
-                JobBarsCN.Config.CursorPosition = newPosition;
-                JobBarsCN.Config.Save();
+            if (JobBarsCN.DrawCombo(ValidCursorPositionType, JobBarsCN.设置.CursorPosition, "光标坐标", Id, out var newPosition)) {
+                JobBarsCN.设置.CursorPosition = newPosition;
+                JobBarsCN.设置.Save();
             }
 
-            if (JobBarsCN.Config.CursorPosition == CursorPositionType.CustomPosition) {
-                if (ImGui.InputFloat2("自定义光标位置", ref JobBarsCN.Config.CursorCustomPosition)) {
-                    JobBarsCN.Config.Save();
+            if (JobBarsCN.设置.CursorPosition == CursorPositionType.CustomPosition) {
+                if (ImGui.InputFloat2("自定义光标位置", ref JobBarsCN.设置.CursorCustomPosition)) {
+                    JobBarsCN.设置.Save();
                 }
             }
 
-            if (ImGui.InputFloat("内环尺寸" + Id, ref JobBarsCN.Config.CursorInnerScale)) JobBarsCN.Config.Save();
-            if (ImGui.InputFloat("外环尺寸" + Id, ref JobBarsCN.Config.CursorOuterScale)) JobBarsCN.Config.Save();
+            if (ImGui.InputFloat("A环尺寸" + Id, ref JobBarsCN.设置.CursorInnerScale)) JobBarsCN.设置.Save();
+            if (ImGui.InputFloat("B环尺寸" + Id, ref JobBarsCN.设置.CursorOuterScale)) JobBarsCN.设置.Save();
 
-            if (Configuration.DrawColor("内环颜色", InnerColor, out var newColorInner)) {
+            if (Configuration.DrawColor("A环颜色", InnerColor, out var newColorInner)) {
                 InnerColor = newColorInner;
-                JobBarsCN.Config.CursorInnerColor = newColorInner.Name;
-                JobBarsCN.Config.Save();
+                JobBarsCN.设置.CursorInnerColor = newColorInner.Name;
+                JobBarsCN.设置.Save();
 
                 JobBarsCN.Builder.SetCursorInnerColor(InnerColor);
             }
 
-            if (Configuration.DrawColor("外环颜色", OuterColor, out var newColorOuter)) {
+            if (Configuration.DrawColor("B环颜色", OuterColor, out var newColorOuter)) {
                 OuterColor = newColorOuter;
-                JobBarsCN.Config.CursorOuterColor = newColorOuter.Name;
-                JobBarsCN.Config.Save();
+                JobBarsCN.设置.CursorOuterColor = newColorOuter.Name;
+                JobBarsCN.设置.Save();
 
                 JobBarsCN.Builder.SetCursorOuterColor(OuterColor);
             }

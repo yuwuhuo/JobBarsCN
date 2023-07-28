@@ -17,7 +17,7 @@ namespace JobBars.Jobs {
     public static class BRD {
         public static GaugeConfig[] Gauges => new GaugeConfig[] {
             new GaugeProcsConfig(UIHelper.Localize(BuffIds.StraightShotReady), GaugeVisualType.Diamond, new GaugeProcProps {
-                Procs = new []{
+                进程 = new []{
                     new ProcConfig(UIHelper.Localize(BuffIds.StraightShotReady), BuffIds.StraightShotReady, UIColor.Yellow)
                 }
             }),
@@ -26,15 +26,15 @@ namespace JobBars.Jobs {
                 SameColor = true,
                 Parts = new []{
                     new GaugesChargesPartProps {
-                        Bar = true,
-                        Diamond = true,
+                        栏 = true,
+                        棱形 = true,
                         CD = 15,
                         MaxCharges = 3,
-                        Triggers = new[] { new Item(ActionIds.BloodLetter) }
+                        触发 = new[] { new Item(ActionIds.BloodLetter) }
                     }
                 }
             }),
-            new GaugeTimerConfig(UIHelper.Localize(BuffIds.VenomousBite), GaugeVisualType.Bar, new GaugeSubTimerProps {
+            new GaugeTimerConfig(UIHelper.Localize(BuffIds.VenomousBite), GaugeVisualType.条状, new GaugeSubTimerProps {
                 MaxDuration = 45,
                 Color = UIColor.Purple,
                 Triggers = new []{
@@ -42,7 +42,7 @@ namespace JobBars.Jobs {
                     new Item(BuffIds.VenomousBite)
                 }
             }),
-            new GaugeTimerConfig(UIHelper.Localize(BuffIds.Stormbite), GaugeVisualType.Bar, new GaugeSubTimerProps {
+            new GaugeTimerConfig(UIHelper.Localize(BuffIds.Stormbite), GaugeVisualType.条状, new GaugeSubTimerProps {
                 MaxDuration = 45,
                 Color = UIColor.LightBlue,
                 Triggers = new []{
@@ -63,35 +63,35 @@ namespace JobBars.Jobs {
         public static BuffConfig[] Buffs => new[] {
             new BuffConfig(UIHelper.Localize(ActionIds.BattleVoice), new BuffProps {
                 CD = 120,
-                Duration = 15,
-                Icon = ActionIds.BattleVoice,
-                Color = UIColor.Orange,
-                Triggers = new []{ new Item(ActionIds.BattleVoice) }
+                持续时间 = 15,
+                图标 = ActionIds.BattleVoice,
+                颜色 = UIColor.Orange,
+                触发 = new []{ new Item(ActionIds.BattleVoice) }
             }),
             new BuffConfig(UIHelper.Localize(ActionIds.RadiantFinale), new BuffProps {
                 CD = 110,
-                Duration = 15,
-                Icon = ActionIds.RadiantFinale,
-                Color = UIColor.DarkBlue,
-                Triggers = new []{ new Item(ActionIds.RadiantFinale) }
+                持续时间 = 15,
+                图标 = ActionIds.RadiantFinale,
+                颜色 = UIColor.DarkBlue,
+                触发 = new []{ new Item(ActionIds.RadiantFinale) }
             }),
             new BuffConfig(UIHelper.Localize(BuffIds.Barrage), new BuffProps {
                 CD = 120,
-                Duration = 10,
-                Icon = ActionIds.Barrage,
-                Color = UIColor.Yellow,
-                Triggers = new []{ new Item(BuffIds.Barrage) }
+                持续时间 = 10,
+                图标 = ActionIds.Barrage,
+                颜色 = UIColor.Yellow,
+                触发 = new []{ new Item(BuffIds.Barrage) }
             }),
             new BuffConfig(UIHelper.Localize(ActionIds.RagingStrikes), new BuffProps {
                 CD = 120,
-                Duration = 20,
-                Icon = ActionIds.RagingStrikes,
-                Color = UIColor.Yellow,
-                Triggers = new []{ new Item(ActionIds.RagingStrikes) }
+                持续时间 = 20,
+                图标 = ActionIds.RagingStrikes,
+                颜色 = UIColor.Yellow,
+                触发 = new []{ new Item(ActionIds.RagingStrikes) }
             })
         };
 
-        public static Cursor Cursors => new(JobIds.BRD, CursorType.None, CursorType.GCD);
+        public static Cursor Cursors => new(JobIds.BRD, CursorType.无, CursorType.GCD);
 
         public static CooldownConfig[] Cooldowns => new[] {
             new CooldownConfig(UIHelper.Localize(ActionIds.Troubadour), new CooldownProps {

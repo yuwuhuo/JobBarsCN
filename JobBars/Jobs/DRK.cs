@@ -39,21 +39,21 @@ namespace JobBars.Jobs {
         public static BuffConfig[] Buffs => new[] {
             new BuffConfig(UIHelper.Localize(BuffIds.Delirium), new BuffProps {
                 CD = 60,
-                Duration = 15,
-                Icon = ActionIds.Delirium,
-                Color = UIColor.Red,
-                Triggers = new []{ new Item(BuffIds.Delirium) }
+                持续时间 = 15,
+                图标 = ActionIds.Delirium,
+                颜色 = UIColor.Red,
+                触发 = new []{ new Item(BuffIds.Delirium) }
             }),
             new BuffConfig(UIHelper.Localize(ActionIds.LivingShadow), new BuffProps {
                 CD = 120,
-                Duration = 20,
-                Icon = ActionIds.LivingShadow,
-                Color = UIColor.Purple,
-                Triggers = new []{ new Item(ActionIds.LivingShadow) }
+                持续时间 = 20,
+                图标 = ActionIds.LivingShadow,
+                颜色 = UIColor.Purple,
+                触发 = new []{ new Item(ActionIds.LivingShadow) }
             })
         };
 
-        public static Cursor Cursors => new(JobIds.DRK, CursorType.None, CursorType.GCD);
+        public static Cursor Cursors => new(JobIds.DRK, CursorType.无, CursorType.GCD);
 
         public static CooldownConfig[] Cooldowns => new[]{
             new CooldownConfig(UIHelper.Localize(ActionIds.LivingDead), new CooldownProps {

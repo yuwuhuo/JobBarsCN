@@ -9,15 +9,15 @@ using System.Linq;
 namespace JobBars.Cooldowns {
     public class CooldownTracker {
         public enum TrackerState {
-            None,
-            Running,
-            OnCD,
-            OffCD
+            无,
+            生效中,
+            冷却中,
+            可用时
         }
 
         private readonly CooldownConfig Config;
 
-        private TrackerState State = TrackerState.None;
+        private TrackerState State = TrackerState.无;
         private DateTime LastActiveTime;
         private Item LastActiveTrigger;
         private float TimeLeft;
@@ -36,26 +36,26 @@ namespace JobBars.Cooldowns {
         }
 
         private void SetActive(Item trigger) {
-            State = Config.Duration == 0 ? TrackerState.OnCD : TrackerState.Running;
+            State = Config.Duration == 0 ? TrackerState.冷却中 : TrackerState.生效中;
             LastActiveTime = DateTime.Now;
             LastActiveTrigger = trigger;
         }
 
         public void Tick(Dictionary<Item, Status> buffDict) {
-            if (State != TrackerState.Running && UIHelper.CheckForTriggers(buffDict, Config.Triggers, out var trigger)) SetActive(trigger);
+            if (State != TrackerState.生效中 && UIHelper.CheckForTriggers(buffDict, Config.Triggers, out var trigger)) SetActive(trigger);
 
-            if (State == TrackerState.Running) {
-                TimeLeft = UIHelper.TimeLeft(JobBarsCN.Config.CooldownsHideActiveBuffDuration ? 0 : Config.Duration, buffDict, LastActiveTrigger, LastActiveTime);
+            if (State == TrackerState.生效中) {
+                TimeLeft = UIHelper.TimeLeft(JobBarsCN.设置.CooldownsHideActiveBuffDuration ? 0 : Config.Duration, buffDict, LastActiveTrigger, LastActiveTime);
                 if(TimeLeft <= 0) {
                     TimeLeft = 0;
-                    State = TrackerState.OnCD; // mitigation needs to have a CD
+                    State = TrackerState.冷却中; // mitigation needs to have a CD
                 }
             }
-            else if (State == TrackerState.OnCD) {
+            else if (State == TrackerState.冷却中) {
                 TimeLeft = (float)(Config.CD - (DateTime.Now - LastActiveTime).TotalSeconds);
 
                 if (TimeLeft <= 0) {
-                    State = TrackerState.OffCD;
+                    State = TrackerState.可用时;
                 }
             }
         }
@@ -68,12 +68,12 @@ namespace JobBars.Cooldowns {
 
             UI.Show();
 
-            if (State == TrackerState.None) {
+            if (State == TrackerState.无) {
                 ui.SetOffCD();
                 ui.SetText("");
                 ui.SetNoDash();
             }
-            else if (State == TrackerState.Running) {
+            else if (State == TrackerState.生效中) {
                 ui.SetOffCD();
                 ui.SetText(((int)Math.Round(TimeLeft)).ToString());
                 if (Config.ShowBorderWhenActive) {
@@ -83,12 +83,12 @@ namespace JobBars.Cooldowns {
                     ui.SetNoDash();
                 }
             }
-            else if (State == TrackerState.OnCD) {
-                ui.SetOnCD(JobBarsCN.Config.CooldownsOnCDOpacity);
+            else if (State == TrackerState.冷却中) {
+                ui.SetOnCD(JobBarsCN.设置.CooldownsOnCDOpacity);
                 ui.SetText(((int)Math.Round(TimeLeft)).ToString());
                 ui.SetNoDash();
             }
-            else if (State == TrackerState.OffCD) {
+            else if (State == TrackerState.可用时) {
                 ui.SetOffCD();
                 ui.SetText("");
                 if (Config.ShowBorderWhenOffCD) {
@@ -105,7 +105,7 @@ namespace JobBars.Cooldowns {
         }
 
         public void Reset() {
-            State = TrackerState.None;
+            State = TrackerState.无;
         }
     }
 }

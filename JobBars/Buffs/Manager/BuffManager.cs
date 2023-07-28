@@ -11,10 +11,10 @@ namespace JobBars.Buffs.Manager {
         private readonly List<BuffConfig> ApplyToTargetBuffs = new();
 
         private readonly Dictionary<JobIds, List<BuffConfig>> CustomBuffs = new();
-        private List<BuffConfig> ApplyToTargetCustomBuffs => CustomBuffs.Values.SelectMany(x => x.Where(y => y.ApplyToTarget)).ToList();
+        private List<BuffConfig> ApplyToTargetCustomBuffs => CustomBuffs.Values.SelectMany(x => x.Where(y => y.应用于目标)).ToList();
 
         public BuffManager() : base("##职业_Buffs") {
-            ApplyToTargetBuffs.AddRange(JobToValue.Values.SelectMany(x => x.Where(y => y.ApplyToTarget)).ToList());
+            ApplyToTargetBuffs.AddRange(JobToValue.Values.SelectMany(x => x.Where(y => y.应用于目标)).ToList());
             JobBarsCN.Builder.HideAllBuffPartyList();
             JobBarsCN.Builder.HideAllBuffs();
         }
@@ -23,23 +23,23 @@ namespace JobBars.Buffs.Manager {
             List<BuffConfig> configs = new();
 
             configs.AddRange(ApplyToTargetBuffs);
-            if (JobToValue.TryGetValue(job, out var props)) configs.AddRange(props.Where(x => !x.ApplyToTarget)); // avoid double-adding
+            if (JobToValue.TryGetValue(job, out var props)) configs.AddRange(props.Where(x => !x.应用于目标)); // avoid double-adding
 
             configs.AddRange(ApplyToTargetCustomBuffs);
-            if (CustomBuffs.TryGetValue(job, out var customProps)) configs.AddRange(customProps.Where(x => !x.ApplyToTarget));
+            if (CustomBuffs.TryGetValue(job, out var customProps)) configs.AddRange(customProps.Where(x => !x.应用于目标));
 
             return configs.ToArray();
         }
 
         public void PerformAction(Item action, uint objectId) {
-            if (!JobBarsCN.Config.BuffBarEnabled) return;
-            if (!JobBarsCN.Config.BuffIncludeParty && objectId != JobBarsCN.ClientState.LocalPlayer.ObjectId) return;
+            if (!JobBarsCN.设置.BuffBarEnabled) return;
+            if (!JobBarsCN.设置.BuffIncludeParty && objectId != JobBarsCN.ClientState.LocalPlayer.ObjectId) return;
 
             foreach (var member in ObjectIdToMember.Values) member.ProcessAction(action, objectId);
         }
 
         public void Tick() {
-            if (UIHelper.CalcDoHide(JobBarsCN.Config.BuffBarEnabled, JobBarsCN.Config.BuffHideOutOfCombat, JobBarsCN.Config.BuffHideWeaponSheathed)) {
+            if (UIHelper.CalcDoHide(JobBarsCN.设置.BuffBarEnabled, JobBarsCN.设置.BuffHideOutOfCombat, JobBarsCN.设置.BuffHideWeaponSheathed)) {
                 JobBarsCN.Builder.HideAllBuffPartyList();
                 JobBarsCN.Builder.HideBuffs();
                 return;
@@ -59,12 +59,12 @@ namespace JobBars.Buffs.Manager {
                 var partyMember = JobBarsCN.PartyMembers[idx];
 
                 if (partyMember == null || partyMember?.Job == JobIds.OTHER || partyMember?.ObjectId == 0) continue;
-                if (!JobBarsCN.Config.BuffIncludeParty && partyMember.ObjectId != JobBarsCN.ClientState.LocalPlayer.ObjectId) continue;
+                if (!JobBarsCN.设置.BuffIncludeParty && partyMember.ObjectId != JobBarsCN.ClientState.LocalPlayer.ObjectId) continue;
 
                 var member = ObjectIdToMember.TryGetValue(partyMember.ObjectId, out var _member) ? _member : new BuffPartyMember(partyMember.ObjectId, partyMember.IsPlayer);
                 member.Tick(activeBuffs, partyMember, out var highlight, out var partyText);
                 JobBarsCN.Builder.SetBuffPartyListVisible(idx, highlight);
-                JobBarsCN.Builder.SetBuffPartyListText(idx, (JobBarsCN.Config.BuffPartyListASTText && JobBarsCN.CurrentJob == JobIds.AST) ? partyText : "");
+                JobBarsCN.Builder.SetBuffPartyListText(idx, (JobBarsCN.设置.BuffPartyListASTText && JobBarsCN.CurrentJob == JobIds.AST) ? partyText : "");
                 newObjectIdToMember[partyMember.ObjectId] = member;
             }
 
@@ -74,7 +74,7 @@ namespace JobBars.Buffs.Manager {
             }
 
             var buffIdx = 0;
-            foreach (var buff in JobBarsCN.Config.BuffOrderByActive ?
+            foreach (var buff in JobBarsCN.设置.BuffOrderByActive ?
                 activeBuffs.OrderBy(b => b.CurrentState) :
                 activeBuffs.OrderBy(b => b.Id)
             ) {
@@ -90,8 +90,8 @@ namespace JobBars.Buffs.Manager {
         }
 
         public void UpdatePositionScale() {
-            JobBarsCN.Builder.SetBuffPosition(JobBarsCN.Config.BuffPosition);
-            JobBarsCN.Builder.SetBuffScale(JobBarsCN.Config.BuffScale);
+            JobBarsCN.Builder.SetBuffPosition(JobBarsCN.设置.BuffPosition);
+            JobBarsCN.Builder.SetBuffScale(JobBarsCN.设置.BuffScale);
         }
 
         public void ResetUI() {

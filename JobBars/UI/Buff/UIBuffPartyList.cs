@@ -5,32 +5,32 @@ using JobBars.Helper;
 
 namespace JobBars.UI {
     public unsafe class UIBuffPartyList {
-        private AtkNineGridNode* Highlight;
+        private AtkNineGridNode* 高亮;
         private AtkTextNode* TextNode;
         private bool Attached = false;
 
         public UIBuffPartyList() {
-            Highlight = UIBuilder.CreateNineNode();
-            Highlight->AtkResNode.Width = 320;
-            Highlight->AtkResNode.Height = 48;
-            UIHelper.SetupTexture(Highlight, "ui/uld/PartyListTargetBase.tex");
-            UIHelper.UpdatePart(Highlight->PartsList, 0, 112, 0, 48, 48);
-            Highlight->TopOffset = 20;
-            Highlight->BottomOffset = 20;
-            Highlight->RightOffset = 20;
-            Highlight->LeftOffset = 20;
-            Highlight->PartsTypeRenderType = 220;
-            Highlight->AtkResNode.NodeID = 23;
-            Highlight->AtkResNode.Flags_2 = 0;
-            Highlight->AtkResNode.DrawFlags = 0;
-            Highlight->AtkResNode.MultiplyBlue = 50;
-            Highlight->AtkResNode.MultiplyRed = 150;
-            UIHelper.SetPosition(Highlight, 47, 21);
-            UIHelper.Hide(Highlight);
+            高亮 = UIBuilder.CreateNineNode();
+            高亮->AtkResNode.Width = 320;
+            高亮->AtkResNode.Height = 48;
+            UIHelper.SetupTexture(高亮, "ui/uld/PartyListTargetBase.tex");
+            UIHelper.UpdatePart(高亮->PartsList, 0, 112, 0, 48, 48);
+            高亮->TopOffset = 20;
+            高亮->BottomOffset = 20;
+            高亮->RightOffset = 20;
+            高亮->LeftOffset = 20;
+            高亮->PartsTypeRenderType = 220;
+            高亮->AtkResNode.NodeID = 23;
+            高亮->AtkResNode.Flags_2 = 0;
+            高亮->AtkResNode.DrawFlags = 0;
+            高亮->AtkResNode.MultiplyBlue = 50;
+            高亮->AtkResNode.MultiplyRed = 150;
+            UIHelper.SetPosition(高亮, 47, 21);
+            UIHelper.Hide(高亮);
 
             TextNode = UIBuilder.CreateTextNode();
-            TextNode->FontSize = (byte)JobBarsCN.Config.BuffTextSize_v2;
-            TextNode->LineSpacing = (byte)JobBarsCN.Config.BuffTextSize_v2;
+            TextNode->FontSize = (byte)JobBarsCN.设置.BuffTextSize_v2;
+            TextNode->LineSpacing = (byte)JobBarsCN.设置.BuffTextSize_v2;
             TextNode->AlignmentFontType = 20;
             TextNode->FontSize = 14;
             TextNode->TextColor = new ByteColor { R = 232, G = 255, B = 254, A = 255 };
@@ -50,10 +50,10 @@ namespace JobBars.UI {
                 TextNode = null;
             }
 
-            if (Highlight != null) {
-                UIHelper.UnloadTexture(Highlight);
-                Highlight->AtkResNode.Destroy(true);
-                Highlight = null;
+            if (高亮 != null) {
+                UIHelper.UnloadTexture(高亮);
+                高亮->AtkResNode.Destroy(true);
+                高亮 = null;
             }
         }
 
@@ -65,8 +65,8 @@ namespace JobBars.UI {
             if (targetGlowContainer == null || iconBottomLeftText == null) return;
 
             targetGlowContainer->ChildCount = 4;
-            Highlight->AtkResNode.ParentNode = targetGlowContainer;
-            UIHelper.Link(targetGlowContainer->ChildNode->PrevSiblingNode->PrevSiblingNode, (AtkResNode*)Highlight);
+            高亮->AtkResNode.ParentNode = targetGlowContainer;
+            UIHelper.Link(targetGlowContainer->ChildNode->PrevSiblingNode->PrevSiblingNode, (AtkResNode*)高亮);
 
             // parent is the component, so don't have to worry about child count
             TextNode->AtkResNode.ParentNode = iconBottomLeftText->AtkResNode.ParentNode;
@@ -83,13 +83,13 @@ namespace JobBars.UI {
             if (targetGlowContainer == null || iconBottomLeftText == null) return;
 
             targetGlowContainer->ChildCount = 3;
-            UIHelper.Detach((AtkResNode*)Highlight);
+            UIHelper.Detach((AtkResNode*)高亮);
             UIHelper.Detach((AtkResNode*)TextNode);
 
             Attached = false;
         }
 
-        public void SetHighlightVisibility(bool visible) => UIHelper.SetVisibility(Highlight, visible);
+        public void SetHighlightVisibility(bool visible) => UIHelper.SetVisibility(高亮, visible);
 
         public void SetText(string text) {
             if (string.IsNullOrEmpty(text)) {

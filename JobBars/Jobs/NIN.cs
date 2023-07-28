@@ -34,17 +34,17 @@ namespace JobBars.Jobs {
                 SameColor = true,
                 Parts = new []{
                     new GaugesChargesPartProps {
-                        Diamond = true,
+                        棱形 = true,
                         MaxCharges = 2,
                         CD = 45,
-                        Triggers = new []{
+                        触发 = new []{
                             new Item(ActionIds.TrueNorth)
                         }
                     },
                     new GaugesChargesPartProps {
-                        Bar = true,
-                        Duration = 10,
-                        Triggers = new []{
+                        栏 = true,
+                        持续时间 = 10,
+                        触发 = new []{
                             new Item(BuffIds.TrueNorth)
                         }
                     }
@@ -56,28 +56,28 @@ namespace JobBars.Jobs {
         public static BuffConfig[] Buffs => new[] {
             new BuffConfig(UIHelper.Localize(ActionIds.Mug), new BuffProps {
                 CD = 120,
-                Duration = 20,
-                Icon = ActionIds.Mug,
-                Color = UIColor.LightBlue,
-                Triggers = new []{ new Item(ActionIds.Mug) }
+                持续时间 = 20,
+                图标 = ActionIds.Mug,
+                颜色 = UIColor.LightBlue,
+                触发 = new []{ new Item(ActionIds.Mug) }
             }),
             new BuffConfig(UIHelper.Localize(ActionIds.TrickAttack), new BuffProps {
                 CD = 60,
-                Duration = 15,
-                Icon = ActionIds.TrickAttack,
-                Color = UIColor.Yellow,
-                Triggers = new []{ new Item(ActionIds.TrickAttack) }
+                持续时间 = 15,
+                图标 = ActionIds.TrickAttack,
+                颜色 = UIColor.Yellow,
+                触发 = new []{ new Item(ActionIds.TrickAttack) }
             }),
             new BuffConfig(UIHelper.Localize(BuffIds.Bunshin), new BuffProps {
                 CD = 90,
-                Duration = 30,
-                Icon = ActionIds.Bunshin,
-                Color = UIColor.Orange,
-                Triggers = new []{ new Item(BuffIds.Bunshin) }
+                持续时间 = 30,
+                图标 = ActionIds.Bunshin,
+                颜色 = UIColor.Orange,
+                触发 = new []{ new Item(BuffIds.Bunshin) }
             })
         };
 
-        public static Cursor Cursors => new(JobIds.NIN, CursorType.None, CursorType.GCD);
+        public static Cursor Cursors => new(JobIds.NIN, CursorType.无, CursorType.GCD);
 
         public static CooldownConfig[] Cooldowns => new[] {
             new CooldownConfig($"{UIHelper.Localize(ActionIds.Feint)} ({UIHelper.Localize(JobIds.NIN)})", new CooldownProps {

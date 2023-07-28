@@ -25,7 +25,7 @@ namespace JobBars.Gauges.Procs {
 
         public GaugeProcsTracker(GaugeProcsConfig config, int idx) {
             Config = config;
-            Procs = Config.Procs.Select(p => new Proc(p)).OrderBy(proc => proc.Config.Order).ToList();
+            Procs = Config.进程.Select(p => new Proc(p)).OrderBy(proc => proc.Config.顺序).ToList();
             LoadUI(Config.TypeConfig switch {
                 GaugeDiamondConfig _ => new GaugeDiamond<GaugeProcsTracker>(this, idx),
                 _ => new GaugeDiamond<GaugeProcsTracker>(this, idx) // DEFAULT
@@ -45,7 +45,7 @@ namespace JobBars.Gauges.Procs {
                 bool procActive = false;
                 proc.RemainingTime = 0;
 
-                foreach(var trigger in proc.Config.Triggers) {
+                foreach(var trigger in proc.Config.触发) {
                     if(trigger.Type == ItemType.Buff) {
                         if(UIHelper.PlayerStatus.TryGetValue(trigger, out var buff)) {
                             procActive = true;
@@ -63,9 +63,9 @@ namespace JobBars.Gauges.Procs {
 
                 if (procActive) procActiveCount++;
                 if (procActive != proc.Active) {
-                    if (procActive && (Config.ProcSound == GaugeCompleteSoundType.When_Full || Config.ProcSound == GaugeCompleteSoundType.When_Empty_or_Full))
+                    if (procActive && (Config.进程音效 == GaugeCompleteSoundType.When_Full || Config.进程音效 == GaugeCompleteSoundType.When_Empty_or_Full))
                         playSound = true;
-                    else if (!procActive && (Config.ProcSound == GaugeCompleteSoundType.When_Empty || Config.ProcSound == GaugeCompleteSoundType.When_Empty_or_Full))
+                    else if (!procActive && (Config.进程音效 == GaugeCompleteSoundType.When_Empty || Config.进程音效 == GaugeCompleteSoundType.When_Empty_or_Full))
                         playSound = true;
                 }
                 proc.Active = procActive;
@@ -79,9 +79,9 @@ namespace JobBars.Gauges.Procs {
 
         public int GetTotalMaxTicks() => Procs.Count;
 
-        public ElementColor GetTickColor(int idx) => Procs[idx].Config.Color;
+        public ElementColor GetTickColor(int idx) => Procs[idx].Config.颜色;
 
-        public bool GetDiamondTextVisible() => Config.ProcsShowText;
+        public bool GetDiamondTextVisible() => Config.进程显示文本;
 
         public bool GetTickValue(int idx) => Procs[idx].Active;
 

@@ -31,10 +31,10 @@ namespace JobBars.Icons {
             Name = name;
             IsTimer = isTimer;
             Icons = new List<ActionIds>(icons).Select(x => (uint)x).ToList();
-            Enabled = JobBarsCN.Config.IconEnabled.Get(Name);
-            ComboType = JobBarsCN.Config.IconComboType.Get(Name);
-            Offset = JobBarsCN.Config.IconTimerOffset.Get(Name);
-            ShowRing = JobBarsCN.Config.IconTimerRing.Get(Name);
+            Enabled = JobBarsCN.设置.IconEnabled.Get(Name);
+            ComboType = JobBarsCN.设置.IconComboType.Get(Name);
+            Offset = JobBarsCN.设置.IconTimerOffset.Get(Name);
+            ShowRing = JobBarsCN.设置.IconTimerRing.Get(Name);
             CreateIconProps();
         }
 
@@ -70,23 +70,23 @@ namespace JobBars.Icons {
                 ImGui.PopStyleColor();
                 ImGui.Indent();
 
-                if (JobBarsCN.Config.IconEnabled.Draw($"启用{_ID}", Name, Enabled, out var newEnabled)) {
+                if (JobBarsCN.设置.IconEnabled.Draw($"启用{_ID}", Name, Enabled, out var newEnabled)) {
                     Enabled = newEnabled;
                     JobBarsCN.IconManager.Reset();
                 }
 
-                if (JobBarsCN.Config.IconComboType.Draw($"提示条件{_ID}", Name, ValidComboTypes, ComboType, out var newComboType)) {
+                if (JobBarsCN.设置.IconComboType.Draw($"提示条件{_ID}", Name, ValidComboTypes, ComboType, out var newComboType)) {
                     ComboType = newComboType;
                     CreateIconProps();
                     JobBarsCN.IconManager.Reset();
                 }
 
                 if (IsTimer) {
-                    if (JobBarsCN.Config.IconTimerOffset.Draw($"提示时间{_ID}", Name, Offset, out var newOffset)) {
+                    if (JobBarsCN.设置.IconTimerOffset.Draw($"时间{_ID}", Name, Offset, out var newOffset)) {
                         Offset = newOffset;
                     }
 
-                    if (JobBarsCN.Config.IconTimerRing.Draw($"计时圈{_ID}", Name, Enabled, out var newRing)) {
+                    if (JobBarsCN.设置.IconTimerRing.Draw($"计时圈{_ID}", Name, Enabled, out var newRing)) {
                         ShowRing = newRing;
                         CreateIconProps();
                         JobBarsCN.IconManager.Reset();

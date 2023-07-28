@@ -26,21 +26,21 @@ namespace JobBars.Cooldowns {
 
                 if (trackerIdx >= (UICooldown.MAX_ITEMS - 1)) break;
                 // skip if disabled
-                if (!JobBarsCN.Config.CooldownsStateShowDefault && tracker.CurrentState == TrackerState.None || 
-                    !JobBarsCN.Config.CooldownsStateShowRunning && tracker.CurrentState == TrackerState.Running || 
-                    !JobBarsCN.Config.CooldownsStateShowOnCD && tracker.CurrentState == TrackerState.OnCD || 
-                    !JobBarsCN.Config.CooldownsStateShowOffCD && tracker.CurrentState == TrackerState.OffCD
+                if (!JobBarsCN.设置.CooldownsStateShowDefault && tracker.CurrentState == TrackerState.无 || 
+                    !JobBarsCN.设置.CooldownsStateShowRunning && tracker.CurrentState == TrackerState.生效中 || 
+                    !JobBarsCN.设置.CooldownsStateShowOnCD && tracker.CurrentState == TrackerState.冷却中 || 
+                    !JobBarsCN.设置.CooldownsStateShowOffCD && tracker.CurrentState == TrackerState.可用时
                 ) {
                     trackerIdx++;
                     continue;
                 }
 
-                var uiIdx = JobBarsCN.Config.CooldownsLeftAligned ? UICooldown.MAX_ITEMS - 1 - trackerIdx : trackerIdx;
+                var uiIdx = JobBarsCN.设置.CooldownsLeftAligned ? UICooldown.MAX_ITEMS - 1 - trackerIdx : trackerIdx;
                 tracker.TickUI(ui.Items[uiIdx], percent);
                 trackerIdx++;
             }
             for (int i = trackerIdx; i < UICooldown.MAX_ITEMS; i++) {
-                var uiIdx = JobBarsCN.Config.CooldownsLeftAligned ? UICooldown.MAX_ITEMS - 1 - i : i;
+                var uiIdx = JobBarsCN.设置.CooldownsLeftAligned ? UICooldown.MAX_ITEMS - 1 - i : i;
                 ui.Items[uiIdx].SetVisible(false); // hide unused
             }
         }

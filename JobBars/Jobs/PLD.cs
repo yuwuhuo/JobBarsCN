@@ -17,8 +17,8 @@ namespace JobBars.Jobs {
     public static class PLD {
         public static GaugeConfig[] Gauges => new GaugeConfig[] {
             new GaugeProcsConfig(UIHelper.Localize(BuffIds.DivineMight), GaugeVisualType.Diamond, new GaugeProcProps{
-                ShowText = true,
-                Procs = new []{
+                显示文本 = true,
+                进程 = new []{
                     new ProcConfig(UIHelper.Localize(BuffIds.DivineMight), BuffIds.DivineMight, UIColor.DarkBlue)
                 }
             }),
@@ -36,7 +36,7 @@ namespace JobBars.Jobs {
                 },
                 Color = UIColor.BlueGreen
             }),
-            new GaugeGCDConfig(UIHelper.Localize(BuffIds.FightOrFlight), GaugeVisualType.Bar, new GaugeSubGCDProps {
+            new GaugeGCDConfig(UIHelper.Localize(BuffIds.FightOrFlight), GaugeVisualType.条状, new GaugeSubGCDProps {
                 MaxCounter = 8,
                 MaxDuration = 20,
                 Color = UIColor.Red,
@@ -49,14 +49,14 @@ namespace JobBars.Jobs {
         public static BuffConfig[] Buffs => new[] {
             new BuffConfig(UIHelper.Localize(BuffIds.Requiescat), new BuffProps {
                 CD = 60,
-                Duration = 30,
-                Icon = ActionIds.Requiescat,
-                Color = UIColor.LightBlue,
-                Triggers = new []{ new Item(BuffIds.Requiescat) }
+                持续时间 = 30,
+                图标 = ActionIds.Requiescat,
+                颜色 = UIColor.LightBlue,
+                触发 = new []{ new Item(BuffIds.Requiescat) }
             })
         };
 
-        public static Cursor Cursors => new(JobIds.PLD, CursorType.None, CursorType.GCD);
+        public static Cursor Cursors => new(JobIds.PLD, CursorType.无, CursorType.GCD);
 
         public static CooldownConfig[] Cooldowns => new[] {
             new CooldownConfig(UIHelper.Localize(ActionIds.HallowedGround), new CooldownProps {

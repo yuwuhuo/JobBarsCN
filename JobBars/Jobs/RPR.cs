@@ -31,7 +31,7 @@ namespace JobBars.Jobs {
                 },
                 Color = UIColor.PurplePink
             }),
-            new GaugeTimerConfig(UIHelper.Localize(BuffIds.BloodsownCircle), GaugeVisualType.Bar, new GaugeSubTimerProps {
+            new GaugeTimerConfig(UIHelper.Localize(BuffIds.BloodsownCircle), GaugeVisualType.条状, new GaugeSubTimerProps {
                 MaxDuration = 6,
                 DefaultDuration = 30,
                 Color = UIColor.BlueGreen,
@@ -40,7 +40,7 @@ namespace JobBars.Jobs {
                     new Item(BuffIds.BloodsownCircle)
                 }
             }),
-            new GaugeTimerConfig(UIHelper.Localize(BuffIds.DeathsDesign), GaugeVisualType.Bar, new GaugeSubTimerProps {
+            new GaugeTimerConfig(UIHelper.Localize(BuffIds.DeathsDesign), GaugeVisualType.条状, new GaugeSubTimerProps {
                 MaxDuration = 60,
                 DefaultDuration = 30,
                 Color = UIColor.Purple,
@@ -53,15 +53,15 @@ namespace JobBars.Jobs {
                 SameColor = true,
                 Parts = new []{
                     new GaugesChargesPartProps {
-                        Diamond = true,
+                        棱形 = true,
                         MaxCharges = 2,
                         CD = 45,
-                        Triggers = new []{ new Item(ActionIds.TrueNorth) }
+                        触发 = new []{ new Item(ActionIds.TrueNorth) }
                     },
                     new GaugesChargesPartProps {
-                        Bar = true,
-                        Duration = 10,
-                        Triggers = new []{ new Item(BuffIds.TrueNorth)  }
+                        栏 = true,
+                        持续时间 = 10,
+                        触发 = new []{ new Item(BuffIds.TrueNorth)  }
                     }
                 },
                 CompletionSound = GaugeCompleteSoundType.Never
@@ -71,14 +71,14 @@ namespace JobBars.Jobs {
         public static BuffConfig[] Buffs => new BuffConfig[] {
             new BuffConfig(UIHelper.Localize(ActionIds.ArcaneCircle), new BuffProps {
                 CD = 120,
-                Duration = 20,
-                Icon = ActionIds.ArcaneCircle,
-                Color = UIColor.Red,
-                Triggers = new []{ new Item(ActionIds.ArcaneCircle) }
+                持续时间 = 20,
+                图标 = ActionIds.ArcaneCircle,
+                颜色 = UIColor.Red,
+                触发 = new []{ new Item(ActionIds.ArcaneCircle) }
             })
         };
 
-        public static Cursor Cursors => new(JobIds.RPR, CursorType.None, CursorType.GCD);
+        public static Cursor Cursors => new(JobIds.RPR, CursorType.无, CursorType.GCD);
 
         public static CooldownConfig[] Cooldowns => new CooldownConfig[] {
             new CooldownConfig($"{UIHelper.Localize(ActionIds.Feint)} ({UIHelper.Localize(JobIds.RPR)})", new CooldownProps {

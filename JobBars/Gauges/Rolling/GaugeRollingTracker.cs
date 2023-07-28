@@ -32,7 +32,7 @@ namespace JobBars.Gauges.Rolling {
             }
             else if (Config.RollingType == GaugeGCDRollingType.CastTime) {
                 Value = UIHelper.GetCastTime(out var timeElapsed, out var total);
-                IndicatorValue = (JobBarsCN.Config.GaugeSlidecastTime > 0f && total > 0f) ? JobBarsCN.Config.GaugeSlidecastTime / total : 0f;
+                IndicatorValue = (JobBarsCN.设置.GaugeSlidecastTime > 0f && total > 0f) ? JobBarsCN.设置.GaugeSlidecastTime / total : 0f;
                 TextValue = (total - timeElapsed).ToString("0.00");
             }
         }
