@@ -1,0 +1,87 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <LangVersion>preview</LangVersion>
+    <AssemblyTitle>JobBarsCN</AssemblyTitle>
+    <Company></Company>
+    <Product>JobBarsCN</Product>
+    <Copyright>Copyright © 2020</Copyright>
+    <AssemblyVersion>1.2.3.8</AssemblyVersion>
+    <FileVersion>1.2.3.8</FileVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Assets\**" />
+    <Compile Remove="lib\**" />
+    <EmbeddedResource Remove="Assets\**" />
+    <EmbeddedResource Remove="lib\**" />
+    <None Remove="Assets\**" />
+    <None Remove="lib\**" />
+  </ItemGroup>
+
+  <PropertyGroup>
+	  <DalamudLibPath>E:\Dalamud.Updater.exe_v1.0.4.4\addon\Hooks\dev\</DalamudLibPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Dalamud">
+      <Private>false</Private>
+      <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
+    </Reference>
+    <Reference Include="FFXIVClientStructs">
+      <Private>false</Private>
+      <HintPath>$(DalamudLibPath)FFXIVClientStructs.dll</HintPath>
+    </Reference>
+    <Reference Include="ImGui.NET">
+      <Private>false</Private>
+      <HintPath>$(DalamudLibPath)ImGui.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="ImGuiScene">
+      <Private>false</Private>
+      <HintPath>$(DalamudLibPath)ImGuiScene.dll</HintPath>
+    </Reference>
+    <Reference Include="Lumina">
+      <Private>false</Private>
+      <HintPath>$(DalamudLibPath)Lumina.dll</HintPath>
+    </Reference>
+    <Reference Include="Lumina.Excel">
+      <Private>false</Private>
+      <HintPath>$(DalamudLibPath)Lumina.Excel.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Update="JobBarsCN.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="DalamudPackager" Version="2.1.10" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+</Project>
